@@ -1,0 +1,112 @@
+{
+  "Metadata": {
+    "title": "RESPECT"
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About Us",
+    "work": "Our Work",
+    "services": "Services",
+    "cta": "Let's Talk",
+    "logoAlt": "RESPECT"
+  },
+  "Hero": {
+    "headlinePart1": "Marketing",
+    "headlinePart2": "that earns",
+    "wordmarkAlt": "RESPECT",
+    "body": "Growth rarely fails for lack of effort — it fails for lack of a system. RESPECT builds the brand and business foundations that make expansion structured, measurable, and repeatable, not left to chance.",
+    "ctaPrimary": "Let's Talk",
+    "ctaSecondary": "See Our Work"
+  },
+  "Problem": {
+    "body": "You've invested in every channel, yet the numbers never hold. The issue isn't effort — it's the missing system beneath it: no clear positioning, no brand structure, no path to scale. We start with the foundation, not the tactics."
+  },
+  "Services": {
+    "intro": "One integrated system — built to make your growth predictable, measurable, and repeatable.",
+    "items": [
+      {
+        "id": "brand-systems",
+        "title": "A Brand System — Not Just a Pretty Logo.",
+        "description": "A strong brand isn't recognized by its shape, but by the feeling it leaves and the consistency it holds. We build your brand from positioning down to the last visual detail."
+      },
+      {
+        "id": "business-systems",
+        "title": "An Operating System That Makes Growth a Decision, Not a Coincidence.",
+        "description": "Most companies grow on individual effort until they stall. We build a system that runs on structured logic: clear processes, defined roles, and numbers that get measured."
+      },
+      {
+        "id": "websites",
+        "title": "A Website That Sells — Not a \"Brochure\" Site.",
+        "description": "Your website isn't a business card — it's your most important sales tool. We build fast, SEO-optimized sites designed around the journey that turns a visitor into a client."
+      },
+      {
+        "id": "seo",
+        "title": "Organic Visibility That Brings Clients — Not Just Traffic.",
+        "description": "Page one on Google isn't the goal — qualified clients are. We build an SEO system that brings the people already searching for your service, ready to buy."
+      },
+      {
+        "id": "content",
+        "title": "Content That Turns Your Expertise Into Authority — and Authority Into Clients.",
+        "description": "Random content only fills pages. Strategic content builds trust before the first meeting and creates thought leadership that sells without pushing."
+      },
+      {
+        "id": "media-production",
+        "title": "Photo and Video Worthy of Your Brand.",
+        "description": "Weak production tears down trust that content has built. We produce visual material consistent with your brand system, forming the right impression from the first second."
+      },
+      {
+        "id": "software",
+        "title": "Software That Runs the Business — Not Just Another Tool.",
+        "description": "Off-the-shelf systems rarely fit how you actually work. We build custom solutions that connect your operations and turn chaos into an automated system."
+      },
+      {
+        "id": "paid-ads",
+        "title": "Campaigns Built on a System — Not Guesswork.",
+        "description": "Advertising over empty ground burns budget. We build the campaign on clear positioning, a converting landing page, and precise measurement — so you spend on the client, not the click."
+      },
+      {
+        "id": "e-commerce",
+        "title": "An Online Store That Sells — and Runs Efficiently.",
+        "description": "A successful store isn't just a pretty front — it's a full system from browsing to payment and shipping. We build a store that turns visitors into buyers and makes management easy."
+      },
+      {
+        "id": "mobile-apps",
+        "title": "A Mobile App That Serves Growth — Not Just a Store Listing.",
+        "description": "A successful app starts with the experience, not the code. We design and build apps with clear interfaces focused on conversion and user retention."
+      }
+    ]
+  },
+  "Philosophy": {
+    "body": "We believe most companies don't fail for lack of effort — they fail for lack of a system. So we don't chase trends or sell campaigns. We build the brand and business foundations beneath the marketing, honoring what makes each company unique while shaping it for what's next. To us, growth isn't a lucky accident. It's a system you can design, measure, and repeat."
+  },
+  "Values": {
+    "intro": "We build brands people understand and trust, because business is human first.",
+    "items": [
+      {
+        "id": "forgiveness",
+        "name": "Forgiveness",
+        "description": "We don't dwell on what went wrong before us. We look at your business with fresh eyes, learn from past missteps without blame, and build forward. Every challenge is a starting point, not a verdict."
+      },
+      {
+        "id": "peace",
+        "name": "Peace",
+        "description": "We bring calm to the chaos of growth. Clear plans, honest numbers, and no surprises — so you make decisions from a place of confidence, not pressure. Peace of mind is part of the deliverable."
+      },
+      {
+        "id": "love",
+        "name": "Love",
+        "description": "We genuinely care about what we build. We treat your brand as if it were our own, and your growth as a shared win — not just a contract to close. Care shows in the details."
+      },
+      {
+        "id": "humanity",
+        "name": "Humanity",
+        "description": "Behind every business are people. We build brands and systems that humans understand, trust, and connect with — because real growth is human before it is digital."
+      },
+      {
+        "id": "humility",
+        "name": "Humility",
+        "description": "We listen before we advise, and let results speak louder than promises. No ego, no jargon — just honest work that puts your business first and earns trust by doing."
+      }
+    ]
+  }
+}

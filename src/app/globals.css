@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens sourced from DESIGN_SYSTEM.md (frozen).
+ *
+ * Font note: DESIGN_SYSTEM.md documents "Roobert TRIAL" as the brand
+ * typeface, but no licensed font files exist in this repo yet (open item
+ * #5 in DESIGN_SYSTEM.md). The stack below lists it first so it activates
+ * automatically once real font files are added (e.g. via next/font), and
+ * falls back to system fonts with solid Arabic + Latin coverage until then.
+ */
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #21201f;
+
+  --color-brand-normal: #efba43;
+  --color-brand-main: #00770e;
+  --color-brand-light: #fffdfa;
+
+  --color-grey-1: #f5f5f5;
+  --color-grey-2: #dfdfdf;
+  --color-grey-5: #929292;
+  --color-grey-7: #686868;
+  --color-grey-9: #464646;
+  --color-grey-10: #21201f;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --font-sans:
+    "Roobert TRIAL", "Segoe UI", Tahoma, ui-sans-serif, system-ui,
+    -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+/*
+ * Motion: DESIGN_SYSTEM.md's Motion Principles are [PENDING] — no Figma
+ * motion language was ever captured. This is a deliberately simple,
+ * conservative default (fade + slight rise, GPU-accelerated properties
+ * only) pending real motion direction.
+ */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Asymmetric corner radii from DESIGN_SYSTEM.md's Border Radius table,
+ * expressed with logical (start/end) properties so the large corner stays
+ * on the same reading-order corner in both LTR and RTL instead of flipping
+ * to the wrong physical side.
+ */
+@layer components {
+  .radius-cta {
+    border-start-start-radius: 4px;
+    border-start-end-radius: 4px;
+    border-end-end-radius: 128px;
+    border-end-start-radius: 4px;
+  }
+
+  .radius-badge {
+    border-start-start-radius: 0px;
+    border-start-end-radius: 0px;
+    border-end-end-radius: 128px;
+    border-end-start-radius: 0px;
+  }
+
+  /* DESIGN_SYSTEM.md's documented "Service card" pattern (16/16/128/16). */
+  .radius-card {
+    border-start-start-radius: 16px;
+    border-start-end-radius: 16px;
+    border-end-end-radius: 128px;
+    border-end-start-radius: 16px;
+  }
+
+  /*
+   * Named entrance-animation utilities — the single source of truth for
+   * fade-in-up timing/easing/delay steps, so no section hardcodes a
+   * duration or delay value of its own. `prefers-reduced-motion` is baked
+   * into the definition, not left to each call site to remember.
+   * Add `-3`, `-4`, ... here if a future section needs more stagger steps.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s ease-out both;
+    }
+
+    .animate-fade-in-up-1 {
+      animation: fade-in-up 0.6s ease-out 0.1s both;
+    }
+
+    .animate-fade-in-up-2 {
+      animation: fade-in-up 0.6s ease-out 0.2s both;
+    }
+  }
+}
