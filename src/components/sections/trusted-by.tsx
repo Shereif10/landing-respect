@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { AssetPlaceholder } from "@/components/ui/asset-placeholder";
 
 type ClientLogo = {
@@ -8,14 +9,28 @@ type ClientLogo = {
   height: number;
 };
 
+type TempClient = {
+  id: string;
+  name: string;
+};
+
 /**
  * Client logos are business-supplied assets (PRD §8 IA #2; SEO_GAPS.md Gap 2
  * confirms this section has no SEO-document content). Pass the approved
- * list via `logos` once it exists. With no list, this renders a single
- * generic pending state rather than a fixed number of empty slots, since no
- * client count has been confirmed.
+ * `logos` list once real logo files exist and it takes over automatically;
+ * until then this renders the temporary named placeholders from the
+ * TrustedBy namespace (see its `_temporary` marker).
  */
-export function TrustedBy({ logos = [] }: { logos?: ClientLogo[] }) {
+export async function TrustedBy({
+  locale,
+  logos = [],
+}: {
+  locale: string;
+  logos?: ClientLogo[];
+}) {
+  const t = await getTranslations({ locale, namespace: "TrustedBy" });
+  const tempClients = t.raw("items") as TempClient[];
+
   return (
     <section
       id="trusted-by"
@@ -36,8 +51,14 @@ export function TrustedBy({ logos = [] }: { logos?: ClientLogo[] }) {
           ))}
         </div>
       ) : (
-        <div className="flex justify-center py-8">
-          <AssetPlaceholder className="h-12 w-full max-w-sm bg-grey-2/40" />
+        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+          {tempClients.map((client) => (
+            <AssetPlaceholder
+              key={client.id}
+              label={client.name}
+              className="h-12 w-28 bg-grey-2/40"
+            />
+          ))}
         </div>
       )}
     </section>

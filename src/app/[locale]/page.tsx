@@ -1,4 +1,5 @@
 import { SiteHeader } from "@/components/layout/site-header";
+import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { TrustedBy } from "@/components/sections/trusted-by";
 import { Problem } from "@/components/sections/problem";
@@ -6,6 +7,9 @@ import { HowWeHelp } from "@/components/sections/how-we-help";
 import { BusinessesWeHelped } from "@/components/sections/businesses-we-helped";
 import { Philosophy } from "@/components/sections/philosophy";
 import { Values } from "@/components/sections/values";
+import { HowWeWork } from "@/components/sections/how-we-work";
+import { FinalCTA } from "@/components/sections/final-cta";
+import { Contact } from "@/components/sections/contact";
 
 export default async function HomePage({
   params,
@@ -32,13 +36,17 @@ export default async function HomePage({
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
         <Hero locale={locale} />
-        <TrustedBy />
+        <TrustedBy locale={locale} />
         <Problem locale={locale} />
         <HowWeHelp locale={locale} />
         <BusinessesWeHelped locale={locale} />
         <Philosophy locale={locale} />
         <Values locale={locale} />
+        <HowWeWork locale={locale} />
+        <FinalCTA locale={locale} />
+        <Contact locale={locale} />
       </main>
+      <Footer locale={locale} />
     </>
   );
 }

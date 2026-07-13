@@ -39,22 +39,65 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
+
+  /*
+   * SiteHeader is now `sticky top-0`, so it floats above whatever section
+   * scrolls to the top of the viewport. Without this, jumping to an anchor
+   * (#services, #work, #philosophy, #contact) would land the target's top
+   * edge underneath the floating header instead of just below it. Value is
+   * an approximation of the header's rendered height — fine-tune once
+   * verified visually.
+   */
+  html {
+    scroll-padding-top: 5.5rem;
+  }
 }
 
 /*
  * Motion: DESIGN_SYSTEM.md's Motion Principles are [PENDING] — no Figma
- * motion language was ever captured. This is a deliberately simple,
- * conservative default (fade + slight rise, GPU-accelerated properties
- * only) pending real motion direction.
+ * motion language was ever captured. These are deliberately simple,
+ * conservative defaults (opacity + transform only, GPU-accelerated)
+ * pending real motion direction.
  */
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -89,22 +132,45 @@
 
   /*
    * Named entrance-animation utilities — the single source of truth for
-   * fade-in-up timing/easing/delay steps, so no section hardcodes a
-   * duration or delay value of its own. `prefers-reduced-motion` is baked
-   * into the definition, not left to each call site to remember.
-   * Add `-3`, `-4`, ... here if a future section needs more stagger steps.
+   * timing/easing/delay, so no section hardcodes a duration or delay value
+   * of its own. `prefers-reduced-motion` is baked into the definition, not
+   * left to each call site to remember. Different shapes exist so distinct
+   * kinds of content can move differently (a heading rising into place
+   * reads differently than a background easing into view) without any
+   * section writing its own one-off animation.
    */
   @media (prefers-reduced-motion: no-preference) {
     .animate-fade-in-up {
-      animation: fade-in-up 0.6s ease-out both;
+      animation: fade-in-up 0.7s ease-out both;
     }
 
-    .animate-fade-in-up-1 {
-      animation: fade-in-up 0.6s ease-out 0.1s both;
-    }
-
+    /* Same rise as fade-in-up, but a gentle spring instead of a plain
+       ease-out — gives the CTA a slightly more "arriving" feel than the
+       headline's straightforward rise. */
     .animate-fade-in-up-2 {
-      animation: fade-in-up 0.6s ease-out 0.2s both;
+      animation: fade-in-up 0.6s cubic-bezier(0.34, 1.35, 0.64, 1) 0.2s both;
+    }
+
+    .animate-fade-in-delayed {
+      animation: fade-in 0.8s ease-out 0.15s both;
+    }
+
+    .animate-fade-in-slow {
+      animation: fade-in 1.2s ease-out both;
+    }
+
+    /* Backing panel — appears first, quietly, so the main image seems to
+       arrive onto it a moment later. */
+    .animate-fade-in-scale-early {
+      animation: fade-in-scale 0.6s ease-out both;
+    }
+
+    .animate-fade-in-scale {
+      animation: fade-in-scale 0.7s ease-out 0.2s both;
+    }
+
+    .animate-pop-in {
+      animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
     }
   }
 }

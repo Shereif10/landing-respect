@@ -8,7 +8,11 @@
     "work": "Our Work",
     "services": "Services",
     "cta": "Let's Talk",
-    "logoAlt": "RESPECT"
+    "logoAlt": "RESPECT",
+    "menuToggle": "Menu",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
+    "footerNav": "Footer navigation"
   },
   "Hero": {
     "headlinePart1": "Marketing",
@@ -17,6 +21,15 @@
     "body": "Growth rarely fails for lack of effort — it fails for lack of a system. RESPECT builds the brand and business foundations that make expansion structured, measurable, and repeatable, not left to chance.",
     "ctaPrimary": "Let's Talk",
     "ctaSecondary": "See Our Work"
+  },
+  "TrustedBy": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder client names used only to unblock development. No real client logos or names exist in the SEO Document (see SEO_GAPS.md Gap 2). These are obviously fictional companies, not real clients. Must be replaced with business-approved client logos before launch.",
+    "items": [
+      { "id": "atlas-manufacturing", "name": "Atlas Manufacturing" },
+      { "id": "nova-retail", "name": "Nova Retail" },
+      { "id": "horizon-clinics", "name": "Horizon Clinics" },
+      { "id": "cedar-co", "name": "Cedar & Co." }
+    ]
   },
   "Problem": {
     "body": "You've invested in every channel, yet the numbers never hold. The issue isn't effort — it's the missing system beneath it: no clear positioning, no brand structure, no path to scale. We start with the foundation, not the tactics."
@@ -76,6 +89,31 @@
       }
     ]
   },
+  "BusinessesWeHelped": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder case studies used only to unblock development. No case study descriptions exist in the SEO Document (see SEO_GAPS.md Gap 4). These are obviously fictional companies, not real clients. Must be replaced with business-approved case studies before launch.",
+    "items": [
+      {
+        "id": "atlas-manufacturing",
+        "name": "Atlas Manufacturing",
+        "description": "Partnered with RESPECT to rebuild its brand identity and simplify how teams track projects across multiple facilities."
+      },
+      {
+        "id": "nova-retail",
+        "name": "Nova Retail",
+        "description": "Worked with RESPECT to launch a faster, conversion-focused online store and a clearer content strategy."
+      },
+      {
+        "id": "horizon-clinics",
+        "name": "Horizon Clinics",
+        "description": "Teamed up with RESPECT to modernize its patient-facing website and streamline appointment communication."
+      },
+      {
+        "id": "cedar-co",
+        "name": "Cedar & Co.",
+        "description": "Collaborated with RESPECT to define a clear market position and a consistent visual identity across every channel."
+      }
+    ]
+  },
   "Philosophy": {
     "body": "We believe most companies don't fail for lack of effort — they fail for lack of a system. So we don't chase trends or sell campaigns. We build the brand and business foundations beneath the marketing, honoring what makes each company unique while shaping it for what's next. To us, growth isn't a lucky accident. It's a system you can design, measure, and repeat."
   },
@@ -108,5 +146,80 @@
         "description": "We listen before we advise, and let results speak louder than promises. No ego, no jargon — just honest work that puts your business first and earns trust by doing."
       }
     ]
+  },
+  "HowWeWork": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copy used only to unblock development. Not sourced from the SEO Document (see SEO_GAPS.md Gap 5, no confirmed unified process existed). Must be replaced with business-approved copy before launch.",
+    "heading": "How We Work",
+    "intro": "Every successful project follows a clear process. Our approach keeps every step aligned with your business goals while ensuring transparency, quality, and measurable progress.",
+    "items": [
+      {
+        "id": "discover",
+        "title": "Discover",
+        "description": "We learn about your business, audience, goals, and current challenges before making any recommendations."
+      },
+      {
+        "id": "strategy",
+        "title": "Strategy",
+        "description": "We define a clear roadmap covering positioning, priorities, timelines, and measurable objectives."
+      },
+      {
+        "id": "build",
+        "title": "Build",
+        "description": "Our team executes the agreed plan using design, technology, and business systems tailored to your needs."
+      },
+      {
+        "id": "optimize",
+        "title": "Optimize",
+        "description": "After launch, we monitor results, identify opportunities, and continuously improve performance."
+      }
+    ]
+  },
+  "FinalCTA": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copy used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
+    "heading": "Ready to build a business that grows by design?",
+    "body": "Let's discuss your goals and explore how RESPECT can help you build stronger systems, brands, and digital experiences."
+  },
+  "Contact": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copy (heading, field labels, placeholders, service options, and privacy note) used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
+    "heading": "Tell Us About Your Business",
+    "subheading": "Share a few details below and our team will get back to you shortly.",
+    "requiredIndicator": "(required)",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "companyLabel": "Company",
+    "companyPlaceholder": "Enter your company name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "Enter your phone number",
+    "serviceLabel": "Service Needed",
+    "servicePlaceholder": "Select a service",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your project",
+    "submitLabel": "Send Message",
+    "privacyNote": "Your information is kept private and used only to respond to your inquiry.",
+    "items": [
+      { "id": "branding", "label": "Branding" },
+      { "id": "business-systems", "label": "Business Systems" },
+      { "id": "website", "label": "Website" },
+      { "id": "seo", "label": "SEO" },
+      { "id": "content", "label": "Content" },
+      { "id": "media-production", "label": "Photo & Video" },
+      { "id": "software", "label": "Software" },
+      { "id": "paid-ads", "label": "Paid Ads" },
+      { "id": "e-commerce", "label": "E-Commerce" },
+      { "id": "mobile-apps", "label": "Mobile App" },
+      { "id": "other", "label": "Other" }
+    ]
+  },
+  "Footer": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copyright/legal text used only to unblock development. Not sourced from the SEO Document (see BUSINESS_GAPS.md Gap 8 — legal text, social links, and footer navigation copy are unconfirmed). Must be replaced with business/legal-approved copy before launch. Social links are intentionally omitted pending confirmation of which platforms/handles to include.",
+    "copyright": "© {year} RESPECT. All rights reserved."
+  },
+  "WhatsApp": {
+    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder phone number and greeting used only to unblock development. Not a real number (see BUSINESS_GAPS.md Gap 5 — the WhatsApp number and any copy are an unconfirmed business decision). Must be replaced with the business-approved number and copy before launch.",
+    "phoneNumber": "201000000000",
+    "greeting": "Hi, I'm interested in learning more about RESPECT.",
+    "label": "Chat with us on WhatsApp"
   }
 }

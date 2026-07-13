@@ -4,6 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import "@/app/globals.css";
 
 const RTL_LOCALES = new Set(["ar"]);
@@ -85,6 +86,11 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={{ Nav: messages.Nav }}>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </NextIntlClientProvider>
+
+        {/* Persistent global element (PRD §8) — floats independent of
+            scroll position, not part of the page's linear section order,
+            so it lives in the layout rather than page.tsx. */}
+        <WhatsAppButton locale={locale} />
       </body>
     </html>
   );
