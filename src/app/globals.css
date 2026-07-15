@@ -1,13 +1,75 @@
 @import "tailwindcss";
 
 /*
- * Design tokens sourced from DESIGN_SYSTEM.md (frozen).
+ * Self-hosted @font-face declarations. Paths are relative to this file
+ * (src/app/globals.css → src/assets/fonts/...), not root-absolute — these
+ * files live in src/assets, not public/, so Next's build pipeline resolves
+ * and hashes them the same way it does any other CSS asset url().
  *
- * Font note: DESIGN_SYSTEM.md documents "Roobert TRIAL" as the brand
- * typeface, but no licensed font files exist in this repo yet (open item
- * #5 in DESIGN_SYSTEM.md). The stack below lists it first so it activates
- * automatically once real font files are added (e.g. via next/font), and
- * falls back to system fonts with solid Arabic + Latin coverage until then.
+ * RoobertTRIAL ships as six separate static files (no variable font), so
+ * each weight is its own @font-face under the same family name; the browser
+ * picks the nearest declared weight automatically. Bold is registered at
+ * 750 (not the standard 700) to match DESIGN_SYSTEM.md's documented
+ * "Bold (Roobert) — 750, non-standard" weight and the font-[750] utility
+ * already used across Button/Hero; Heavy is registered at 900 to back
+ * Tailwind's font-black utility (used on the Hero headline).
+ */
+@font-face {
+  font-family: "Djingo";
+  src:
+    url("../assets/fonts/djingo.otf") format("opentype"),
+    url("../assets/fonts/djingo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RoobertTRIAL";
+  src: url("../assets/fonts/RoobertTRIAL-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RoobertTRIAL";
+  src: url("../assets/fonts/RoobertTRIAL-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RoobertTRIAL";
+  src: url("../assets/fonts/RoobertTRIAL-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RoobertTRIAL";
+  src: url("../assets/fonts/RoobertTRIAL-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RoobertTRIAL";
+  src: url("../assets/fonts/RoobertTRIAL-Bold.otf") format("opentype");
+  font-weight: 750;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RoobertTRIAL";
+  src: url("../assets/fonts/RoobertTRIAL-Heavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Design tokens sourced from DESIGN_SYSTEM.md (frozen), plus the font-djingo
+ * heading override (see the 2026-07-13 art-direction note below).
  */
 @theme {
   --color-background: #ffffff;
@@ -28,9 +90,14 @@
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
 
-  --font-sans:
-    "Roobert TRIAL", "Segoe UI", Tahoma, ui-sans-serif, system-ui,
-    -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "RoobertTRIAL", "Segoe UI", sans-serif;
+
+  /*
+   * Section heading typeface, per a 2026-07-13 art-direction instruction —
+   * not in DESIGN_SYSTEM.md (frozen; documents Roobert TRIAL/Roboto only),
+   * treated as an intentional override pending that doc's next refresh.
+   */
+  --font-djingo: "Djingo", sans-serif;
 }
 
 @layer base {
@@ -50,54 +117,6 @@
    */
   html {
     scroll-padding-top: 5.5rem;
-  }
-}
-
-/*
- * Motion: DESIGN_SYSTEM.md's Motion Principles are [PENDING] — no Figma
- * motion language was ever captured. These are deliberately simple,
- * conservative defaults (opacity + transform only, GPU-accelerated)
- * pending real motion direction.
- */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in-scale {
-  from {
-    opacity: 0;
-    transform: scale(0.93);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes pop-in {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -130,47 +149,13 @@
     border-end-start-radius: 16px;
   }
 
-  /*
-   * Named entrance-animation utilities — the single source of truth for
-   * timing/easing/delay, so no section hardcodes a duration or delay value
-   * of its own. `prefers-reduced-motion` is baked into the definition, not
-   * left to each call site to remember. Different shapes exist so distinct
-   * kinds of content can move differently (a heading rising into place
-   * reads differently than a background easing into view) without any
-   * section writing its own one-off animation.
-   */
-  @media (prefers-reduced-motion: no-preference) {
-    .animate-fade-in-up {
-      animation: fade-in-up 0.7s ease-out both;
-    }
-
-    /* Same rise as fade-in-up, but a gentle spring instead of a plain
-       ease-out — gives the CTA a slightly more "arriving" feel than the
-       headline's straightforward rise. */
-    .animate-fade-in-up-2 {
-      animation: fade-in-up 0.6s cubic-bezier(0.34, 1.35, 0.64, 1) 0.2s both;
-    }
-
-    .animate-fade-in-delayed {
-      animation: fade-in 0.8s ease-out 0.15s both;
-    }
-
-    .animate-fade-in-slow {
-      animation: fade-in 1.2s ease-out both;
-    }
-
-    /* Backing panel — appears first, quietly, so the main image seems to
-       arrive onto it a moment later. */
-    .animate-fade-in-scale-early {
-      animation: fade-in-scale 0.6s ease-out both;
-    }
-
-    .animate-fade-in-scale {
-      animation: fade-in-scale 0.7s ease-out 0.2s both;
-    }
-
-    .animate-pop-in {
-      animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
-    }
+  /* DESIGN_SYSTEM.md's documented "Story/Culture/Mission/Vision cards"
+     pattern (8/8/128/8) — for image/visual panels, distinct from
+     radius-card's slightly larger 16/16/128/16 card pattern. */
+  .radius-panel {
+    border-start-start-radius: 8px;
+    border-start-end-radius: 8px;
+    border-end-end-radius: 128px;
+    border-end-start-radius: 8px;
   }
 }

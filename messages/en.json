@@ -16,106 +16,105 @@
   },
   "Hero": {
     "headlinePart1": "Marketing",
-    "headlinePart2": "that earns",
+    "headlinePart2": "That Earns",
     "wordmarkAlt": "RESPECT",
-    "body": "Growth rarely fails for lack of effort — it fails for lack of a system. RESPECT builds the brand and business foundations that make expansion structured, measurable, and repeatable, not left to chance.",
+    "body": "Growth rarely fails for lack of effort  it fails for lack of a system. RESPECT builds the brand and business foundations that make expansion structured, measurable, and repeatable, not left to chance.",
     "ctaPrimary": "Let's Talk",
     "ctaSecondary": "See Our Work"
   },
   "TrustedBy": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder client names used only to unblock development. No real client logos or names exist in the SEO Document (see SEO_GAPS.md Gap 2). These are obviously fictional companies, not real clients. Must be replaced with business-approved client logos before launch.",
-    "items": [
-      { "id": "atlas-manufacturing", "name": "Atlas Manufacturing" },
-      { "id": "nova-retail", "name": "Nova Retail" },
-      { "id": "horizon-clinics", "name": "Horizon Clinics" },
-      { "id": "cedar-co", "name": "Cedar & Co." }
-    ]
+    "heading": "Trusted By"
   },
   "Problem": {
-    "body": "You've invested in every channel, yet the numbers never hold. The issue isn't effort — it's the missing system beneath it: no clear positioning, no brand structure, no path to scale. We start with the foundation, not the tactics."
+    "body": "You've invested in every channel, yet the numbers never hold. The issue isn't effort  it's the missing system beneath it: no clear positioning, no brand structure, no path to scale. We start with the foundation, not the tactics."
   },
   "Services": {
-    "intro": "One integrated system — built to make your growth predictable, measurable, and repeatable.",
+    "intro": "One integrated system built to make your growth predictable, measurable, and repeatable.",
     "items": [
       {
         "id": "brand-systems",
-        "title": "A Brand System — Not Just a Pretty Logo.",
+        "title": "Brand Systems",
         "description": "A strong brand isn't recognized by its shape, but by the feeling it leaves and the consistency it holds. We build your brand from positioning down to the last visual detail."
       },
       {
         "id": "business-systems",
-        "title": "An Operating System That Makes Growth a Decision, Not a Coincidence.",
+        "title": "Business Systems",
         "description": "Most companies grow on individual effort until they stall. We build a system that runs on structured logic: clear processes, defined roles, and numbers that get measured."
       },
       {
         "id": "websites",
-        "title": "A Website That Sells — Not a \"Brochure\" Site.",
-        "description": "Your website isn't a business card — it's your most important sales tool. We build fast, SEO-optimized sites designed around the journey that turns a visitor into a client."
+        "title": "Website Design",
+        "description": "Your website isn't a business card  it's your most important sales tool. We build fast, SEO-optimized sites designed around the journey that turns a visitor into a client."
       },
       {
         "id": "seo",
-        "title": "Organic Visibility That Brings Clients — Not Just Traffic.",
-        "description": "Page one on Google isn't the goal — qualified clients are. We build an SEO system that brings the people already searching for your service, ready to buy."
+        "title": "SEO & Visibility",
+        "description": "Page one on Google isn't the goal  qualified clients are. We build an SEO system that brings the people already searching for your service, ready to buy."
       },
       {
         "id": "content",
-        "title": "Content That Turns Your Expertise Into Authority — and Authority Into Clients.",
+        "title": "Content Strategy",
         "description": "Random content only fills pages. Strategic content builds trust before the first meeting and creates thought leadership that sells without pushing."
       },
       {
         "id": "media-production",
-        "title": "Photo and Video Worthy of Your Brand.",
+        "title": "Media Production",
         "description": "Weak production tears down trust that content has built. We produce visual material consistent with your brand system, forming the right impression from the first second."
       },
       {
         "id": "software",
-        "title": "Software That Runs the Business — Not Just Another Tool.",
+        "title": "Custom Software",
         "description": "Off-the-shelf systems rarely fit how you actually work. We build custom solutions that connect your operations and turn chaos into an automated system."
       },
       {
         "id": "paid-ads",
-        "title": "Campaigns Built on a System — Not Guesswork.",
-        "description": "Advertising over empty ground burns budget. We build the campaign on clear positioning, a converting landing page, and precise measurement — so you spend on the client, not the click."
+        "title": "Paid Advertising",
+        "description": "Advertising over empty ground burns budget. We build the campaign on clear positioning, a converting landing page, and precise measurement  so you spend on the client, not the click."
       },
       {
         "id": "e-commerce",
-        "title": "An Online Store That Sells — and Runs Efficiently.",
-        "description": "A successful store isn't just a pretty front — it's a full system from browsing to payment and shipping. We build a store that turns visitors into buyers and makes management easy."
+        "title": "E-Commerce",
+        "description": "A successful store isn't just a pretty front  it's a full system from browsing to payment and shipping. We build a store that turns visitors into buyers and makes management easy."
       },
       {
         "id": "mobile-apps",
-        "title": "A Mobile App That Serves Growth — Not Just a Store Listing.",
+        "title": "Mobile Apps",
         "description": "A successful app starts with the experience, not the code. We design and build apps with clear interfaces focused on conversion and user retention."
       }
     ]
   },
   "BusinessesWeHelped": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder case studies used only to unblock development. No case study descriptions exist in the SEO Document (see SEO_GAPS.md Gap 4). These are obviously fictional companies, not real clients. Must be replaced with business-approved case studies before launch.",
+    "intro": "We turn ambitious businesses into growth machines.",
+    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder case studies used only to unblock development. No case study descriptions exist in the SEO Document (see SEO_GAPS.md Gap 4). These are obviously fictional companies, not real clients. Must be replaced with business-approved case studies before launch.",
     "items": [
       {
         "id": "atlas-manufacturing",
         "name": "Atlas Manufacturing",
-        "description": "Partnered with RESPECT to rebuild its brand identity and simplify how teams track projects across multiple facilities."
+        "description": "Partnered with RESPECT to rebuild its brand identity and simplify how teams track projects across multiple facilities.",
+        "services": ["Brand Systems", "Operating Systems", "Web Design"]
       },
       {
         "id": "nova-retail",
         "name": "Nova Retail",
-        "description": "Worked with RESPECT to launch a faster, conversion-focused online store and a clearer content strategy."
+        "description": "Worked with RESPECT to launch a faster, conversion-focused online store and a clearer content strategy.",
+        "services": ["E-commerce", "Content Strategy", "Paid Ads"]
       },
       {
         "id": "horizon-clinics",
         "name": "Horizon Clinics",
-        "description": "Teamed up with RESPECT to modernize its patient-facing website and streamline appointment communication."
+        "description": "Teamed up with RESPECT to modernize its patient-facing website and streamline appointment communication.",
+        "services": ["Web Design", "Software", "SEO"]
       },
       {
         "id": "cedar-co",
         "name": "Cedar & Co.",
-        "description": "Collaborated with RESPECT to define a clear market position and a consistent visual identity across every channel."
+        "description": "Collaborated with RESPECT to define a clear market position and a consistent visual identity across every channel.",
+        "services": ["Brand Systems", "Photo & Video", "Content"]
       }
     ]
   },
   "Philosophy": {
-    "body": "We believe most companies don't fail for lack of effort — they fail for lack of a system. So we don't chase trends or sell campaigns. We build the brand and business foundations beneath the marketing, honoring what makes each company unique while shaping it for what's next. To us, growth isn't a lucky accident. It's a system you can design, measure, and repeat."
+    "body": "We believe most companies don't fail for lack of effort  they fail for lack of a system. So we don't chase trends or sell campaigns. We build the brand and business foundations beneath the marketing, honoring what makes each company unique while shaping it for what's next. To us, growth isn't a lucky accident. It's a system you can design, measure, and repeat."
   },
   "Values": {
     "intro": "We build brands people understand and trust, because business is human first.",
@@ -128,27 +127,27 @@
       {
         "id": "peace",
         "name": "Peace",
-        "description": "We bring calm to the chaos of growth. Clear plans, honest numbers, and no surprises — so you make decisions from a place of confidence, not pressure. Peace of mind is part of the deliverable."
+        "description": "We bring calm to the chaos of growth. Clear plans, honest numbers, and no surprises  so you make decisions from a place of confidence, not pressure. Peace of mind is part of the deliverable."
       },
       {
         "id": "love",
         "name": "Love",
-        "description": "We genuinely care about what we build. We treat your brand as if it were our own, and your growth as a shared win — not just a contract to close. Care shows in the details."
+        "description": "We genuinely care about what we build. We treat your brand as if it were our own, and your growth as a shared win  not just a contract to close. Care shows in the details."
       },
       {
         "id": "humanity",
         "name": "Humanity",
-        "description": "Behind every business are people. We build brands and systems that humans understand, trust, and connect with — because real growth is human before it is digital."
+        "description": "Behind every business are people. We build brands and systems that humans understand, trust, and connect with  because real growth is human before it is digital."
       },
       {
         "id": "humility",
         "name": "Humility",
-        "description": "We listen before we advise, and let results speak louder than promises. No ego, no jargon — just honest work that puts your business first and earns trust by doing."
+        "description": "We listen before we advise, and let results speak louder than promises. No ego, no jargon  just honest work that puts your business first and earns trust by doing."
       }
     ]
   },
   "HowWeWork": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copy used only to unblock development. Not sourced from the SEO Document (see SEO_GAPS.md Gap 5, no confirmed unified process existed). Must be replaced with business-approved copy before launch.",
+    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copy used only to unblock development. Not sourced from the SEO Document (see SEO_GAPS.md Gap 5, no confirmed unified process existed). Must be replaced with business-approved copy before launch.",
     "heading": "How We Work",
     "intro": "Every successful project follows a clear process. Our approach keeps every step aligned with your business goals while ensuring transparency, quality, and measurable progress.",
     "items": [
@@ -175,12 +174,12 @@
     ]
   },
   "FinalCTA": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copy used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
+    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copy used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
     "heading": "Ready to build a business that grows by design?",
     "body": "Let's discuss your goals and explore how RESPECT can help you build stronger systems, brands, and digital experiences."
   },
   "Contact": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copy (heading, field labels, placeholders, service options, and privacy note) used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
+    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copy (heading, field labels, placeholders, service options, and privacy note) used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
     "heading": "Tell Us About Your Business",
     "subheading": "Share a few details below and our team will get back to you shortly.",
     "requiredIndicator": "(required)",
@@ -213,11 +212,11 @@
     ]
   },
   "Footer": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder copyright/legal text used only to unblock development. Not sourced from the SEO Document (see BUSINESS_GAPS.md Gap 8 — legal text, social links, and footer navigation copy are unconfirmed). Must be replaced with business/legal-approved copy before launch. Social links are intentionally omitted pending confirmation of which platforms/handles to include.",
+    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copyright/legal text used only to unblock development. Not sourced from the SEO Document (see BUSINESS_GAPS.md Gap 8  legal text, social links, and footer navigation copy are unconfirmed). Must be replaced with business/legal-approved copy before launch. Social links are intentionally omitted pending confirmation of which platforms/handles to include.",
     "copyright": "© {year} RESPECT. All rights reserved."
   },
   "WhatsApp": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT — placeholder phone number and greeting used only to unblock development. Not a real number (see BUSINESS_GAPS.md Gap 5 — the WhatsApp number and any copy are an unconfirmed business decision). Must be replaced with the business-approved number and copy before launch.",
+    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder phone number and greeting used only to unblock development. Not a real number (see BUSINESS_GAPS.md Gap 5  the WhatsApp number and any copy are an unconfirmed business decision). Must be replaced with the business-approved number and copy before launch.",
     "phoneNumber": "201000000000",
     "greeting": "Hi, I'm interested in learning more about RESPECT.",
     "label": "Chat with us on WhatsApp"

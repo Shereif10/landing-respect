@@ -1,10 +1,11 @@
 import { getTranslations } from "next-intl/server";
-import { CaseStudiesGrid } from "@/components/ui/case-studies-grid";
+import { CaseStudiesGridClient } from "@/components/ui/case-studies-grid-client";
 
 type CaseStudy = {
   id: string;
   name: string;
   description: string;
+  services: string[];
 };
 
 // `locale` is required explicitly (not read implicitly) to keep this page
@@ -23,20 +24,13 @@ export async function BusinessesWeHelped({ locale }: { locale: string }) {
           already business-approved Nav.work UI label, not PRD/SEO copy. */}
       <h2 className="sr-only">{navT("work")}</h2>
 
-      <CaseStudiesGrid
-        items={caseStudies}
-        getKey={(item) => item.id}
-        renderItem={(item) => (
-          <>
-            <h3 className="text-2xl font-bold leading-tight text-grey-10">
-              {item.name}
-            </h3>
-            <p className="text-base font-medium leading-relaxed text-grey-9">
-              {item.description}
-            </p>
-          </>
-        )}
-      />
+      <div className="mb-12 text-center lg:mb-16">
+        <p className="text-grey-10 mx-auto max-w-[720px] text-2xl leading-[1.35] font-semibold tracking-[-0.01em] md:text-3xl lg:text-[40px] lg:leading-[1.3]">
+          {t("intro")}
+        </p>
+      </div>
+
+      <CaseStudiesGridClient items={caseStudies} />
     </section>
   );
 }
