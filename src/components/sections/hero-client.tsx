@@ -19,6 +19,7 @@ const R_PATH =
 const R_VIEWBOX = "118 -20 540 540";
 
 type HeroClientProps = {
+  locale: string;
   headlinePart1: string;
   headlinePart2: string;
   wordmarkAlt: string;
@@ -35,6 +36,7 @@ type HeroClientProps = {
  * exposed there).
  */
 export function HeroClient({
+  locale,
   headlinePart1,
   headlinePart2,
   wordmarkAlt,
@@ -120,13 +122,20 @@ export function HeroClient({
             className="text-grey-10 flex flex-col gap-4 text-[44px] leading-[1.12] md:text-[60px] lg:text-[76px] ltr:tracking-[0.02em]"
           >
             <span className="font-black">{headlinePart1}</span>
+
             <span className="text-brand-main font-[750]">{headlinePart2}</span>
+
             <span className="pt-1">
-              <Image
-                src={RespectWordmark}
-                alt={wordmarkAlt}
-                className="h-auto w-[180px] md:w-[240px] lg:w-[300px]"
-              />
+              {locale === "ar" ? (
+                <span className="text-brand-normal font-black">الاحترام</span>
+              ) : (
+                <Image
+                  src={RespectWordmark}
+                  alt={wordmarkAlt}
+                  className="h-auto w-[180px] md:w-[240px] lg:w-[300px]"
+                  priority
+                />
+              )}
             </span>
           </h1>
 
@@ -153,9 +162,17 @@ export function HeroClient({
                 className="shadow-sm !transition-[background-color,box-shadow,transform] duration-[250ms] ease-out hover:-translate-y-px hover:shadow-md motion-reduce:transition-none"
               >
                 {ctaPrimary}
-                <Image src={ArrowRight} alt="" className="h-[11px] w-[52px]" />
+
+                <Image
+                  src={ArrowRight}
+                  alt=""
+                  width={52}
+                  height={11}
+                  className="h-[11px] w-[52px]"
+                />
               </Button>
             </span>
+
             <span className="inline-flex">
               <Button
                 href="#work"
@@ -183,10 +200,12 @@ export function HeroClient({
                   <path d={R_PATH} />
                 </clipPath>
               </defs>
+
               {/* Solid brand-green fallback: the R reads as a complete,
                   confident shape on its own. The video plays on top,
                   cropped to the exact same silhouette. */}
               <path d={R_PATH} className="fill-brand-main" />
+
               <foreignObject
                 x="138"
                 y="0"
@@ -201,6 +220,7 @@ export function HeroClient({
                   muted
                   loop
                   playsInline
+                  preload="metadata"
                   className="h-full w-full object-cover"
                 />
               </foreignObject>

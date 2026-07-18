@@ -2,12 +2,8 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap } from "@/lib/gsap";
+import maeet1 from "../../assets/svg/maeet1.svg";
 
 interface PhilosophyClientProps {
   navLabel: string;
@@ -19,15 +15,20 @@ export function PhilosophyClient({ navLabel, body }: PhilosophyClientProps) {
   const textColumnRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
-  // Parse the philosophy body into 3 key statements
-  // Statement 1: "We believe..." (first sentence up to "system.")
-  // Statement 2: "So we don't..." (from "So we" up to "what's next.")
-  // Statement 3: "To us..." (rest)
-  const statements = [
-    "We believe most companies don't fail for lack of effort they fail for lack of a system.",
-    "So we don't chase trends or sell campaigns. We build the brand and business foundations beneath the marketing, honoring what makes each company unique while shaping it for what's next.",
-    "To us, growth isn't a lucky accident. It's a system you can design, measure, and repeat.",
-  ];
+  // Parse body into statements — split by common sentence markers
+  const parseStatements = (text: string): string[] => {
+    // Split by periods and filter empty strings
+    const parts = text.split(/(?<=[..])\s+/).filter((s) => s.trim().length > 0);
+
+    // If we have at least 3 parts, group them into 3 statements
+    if (parts.length >= 3) {
+      return [parts[0], parts.slice(1, -1).join(" "), parts[parts.length - 1]];
+    }
+    // If less than 3, return as is
+    return parts.length > 0 ? parts : [text];
+  };
+
+  const statements = parseStatements(body);
 
   useLayoutEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -83,24 +84,25 @@ export function PhilosophyClient({ navLabel, body }: PhilosophyClientProps) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
-
-  // Placeholder illustration — replace with real brand asset
-  const placeholderImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='600'%3E%3Crect fill='%23F5F5F5' width='500' height='600'/%3E%3Ccircle cx='100' cy='100' r='60' fill='%2300770E' opacity='0.1'/%3E%3Ccircle cx='400' cy='150' r='80' fill='%23EFBA43' opacity='0.1'/%3E%3Crect x='80' y='300' width='120' height='120' fill='%2300770E' opacity='0.08'/%3E%3Cpath d='M200 200 L300 250 L250 350 Z' fill='%23EFBA43' opacity='0.08'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23999' text-anchor='middle' dy='.3em' transform='translate(0, 100)'%3ESystem Illustration%3C/text%3E%3C/svg%3E`;
+  }, [body]);
 
   return (
     <section
       ref={sectionRef}
       id="philosophy"
       className="mx-auto w-full max-w-[1280px] px-6 py-16 lg:px-16 lg:py-24"
+      style={{ direction: "ltr" }}
     >
       {/* Structural heading */}
       <h2 className="sr-only">{navLabel}</h2>
 
-      {/* Two-column layout: text left, image right */}
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
-        {/* Left column: statements */}
-        <div ref={textColumnRef} className="flex flex-col gap-8 lg:gap-10">
+      {/* Two-column layout: Image LEFT + Text RIGHT */}
+      <div className="flex flex-col-reverse gap-12 lg:flex-row-reverse lg:items-center lg:gap-20">
+        {/* Right column: statements */}
+        <div
+          ref={textColumnRef}
+          className="flex flex-1 flex-col gap-8 lg:gap-10"
+        >
           {statements.map((statement, index) => (
             <div key={index} data-statement>
               <h3 className="text-brand-main text-2xl leading-snug font-bold md:text-[28px] lg:text-[32px]">
@@ -110,7 +112,7 @@ export function PhilosophyClient({ navLabel, body }: PhilosophyClientProps) {
           ))}
         </div>
 
-        {/* Right column: illustration placeholder */}
+        {/* Left column: illustration */}
         <div
           ref={imageRef}
           style={{
@@ -119,13 +121,14 @@ export function PhilosophyClient({ navLabel, body }: PhilosophyClientProps) {
             borderEndStartRadius: "16px",
             borderEndEndRadius: "128px",
           }}
-          className="border-grey-1 bg-grey-1 relative h-[400px] w-full overflow-hidden border-2 lg:h-[500px]"
+          className="relative h-[400px] w-full flex-shrink-0 overflow-hidden lg:h-[500px] lg:w-[45%]"
         >
           <Image
-            src={placeholderImage}
+            src={maeet1}
             alt="Philosophy illustration"
             fill
-            className="object-cover"
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="object-fill"
           />
         </div>
       </div>

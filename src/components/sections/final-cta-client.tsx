@@ -2,12 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap } from "@/lib/gsap";
 
 interface FinalCTAClientProps {
   heading: string;
@@ -30,6 +25,10 @@ export function FinalCTAClient({
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+
+    const buttonEl = buttonRef.current;
+    let handleMouseEnter: (() => void) | undefined;
+    let handleMouseLeave: (() => void) | undefined;
 
     const ctx = gsap.context(() => {
       // Heading fade + scale
@@ -76,25 +75,34 @@ export function FinalCTAClient({
 
       // Button hover pulse glow animation
       if (!prefersReducedMotion) {
-        buttonRef.current?.addEventListener("mouseenter", () => {
+        handleMouseEnter = () => {
           gsap.to(buttonRef.current, {
             boxShadow: "0 0 30px rgba(239, 186, 67, 0.6)",
             duration: 0.4,
             ease: "power2.out",
           });
-        });
+        };
 
-        buttonRef.current?.addEventListener("mouseleave", () => {
+        handleMouseLeave = () => {
           gsap.to(buttonRef.current, {
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             duration: 0.4,
             ease: "power2.out",
           });
-        });
+        };
+
+        buttonEl?.addEventListener("mouseenter", handleMouseEnter);
+        buttonEl?.addEventListener("mouseleave", handleMouseLeave);
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      if (handleMouseEnter)
+        buttonEl?.removeEventListener("mouseenter", handleMouseEnter);
+      if (handleMouseLeave)
+        buttonEl?.removeEventListener("mouseleave", handleMouseLeave);
+      ctx.revert();
+    };
   }, [heading, body, ctaLabel]);
 
   return (

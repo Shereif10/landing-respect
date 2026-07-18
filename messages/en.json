@@ -1,6 +1,7 @@
 {
   "Metadata": {
-    "title": "RESPECT"
+    "title": "RESPECT",
+    "description": "Growth rarely fails for lack of effort  it fails for lack of a system. RESPECT builds the brand and business foundations that make expansion structured, measurable, and repeatable, not left to chance."
   },
   "Nav": {
     "home": "Home",
@@ -18,7 +19,7 @@
     "headlinePart1": "Marketing",
     "headlinePart2": "That Earns",
     "wordmarkAlt": "RESPECT",
-    "body": "Growth rarely fails for lack of effort  it fails for lack of a system. RESPECT builds the brand and business foundations that make expansion structured, measurable, and repeatable, not left to chance.",
+    "body": "Most companies don't suffer from too little marketing  they suffer from the absence of a system. At RESPECT we build the brand and business systems that make growth a predictable decision, not a lucky accident.",
     "ctaPrimary": "Let's Talk",
     "ctaSecondary": "See Our Work"
   },
@@ -26,10 +27,10 @@
     "heading": "Trusted By"
   },
   "Problem": {
-    "body": "You've invested in every channel, yet the numbers never hold. The issue isn't effort  it's the missing system beneath it: no clear positioning, no brand structure, no path to scale. We start with the foundation, not the tactics."
+    "body": "You spend on ads, switch agencies, try every channel  and results stay inconsistent. The reason: marketing is built on empty ground  no clear positioning, no brand system, no structured growth engine. We start from the foundation, not the campaign."
   },
   "Services": {
-    "intro": "One integrated system built to make your growth predictable, measurable, and repeatable.",
+    "intro": "One integrated system  built to make your growth predictable, measurable, and repeatable.",
     "items": [
       {
         "id": "brand-systems",
@@ -85,31 +86,225 @@
   },
   "BusinessesWeHelped": {
     "intro": "We turn ambitious businesses into growth machines.",
-    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder case studies used only to unblock development. No case study descriptions exist in the SEO Document (see SEO_GAPS.md Gap 4). These are obviously fictional companies, not real clients. Must be replaced with business-approved case studies before launch.",
     "items": [
       {
-        "id": "atlas-manufacturing",
-        "name": "Atlas Manufacturing",
-        "description": "Partnered with RESPECT to rebuild its brand identity and simplify how teams track projects across multiple facilities.",
-        "services": ["Brand Systems", "Operating Systems", "Web Design"]
-      },
-      {
-        "id": "nova-retail",
-        "name": "Nova Retail",
-        "description": "Worked with RESPECT to launch a faster, conversion-focused online store and a clearer content strategy.",
-        "services": ["E-commerce", "Content Strategy", "Paid Ads"]
-      },
-      {
-        "id": "horizon-clinics",
-        "name": "Horizon Clinics",
-        "description": "Teamed up with RESPECT to modernize its patient-facing website and streamline appointment communication.",
-        "services": ["Web Design", "Software", "SEO"]
-      },
-      {
-        "id": "cedar-co",
-        "name": "Cedar & Co.",
+        "id": "prime",
+        "name": "PRIME SHIELD",
         "description": "Collaborated with RESPECT to define a clear market position and a consistent visual identity across every channel.",
-        "services": ["Brand Systems", "Photo & Video", "Content"]
+        "services": [
+          "Branding",
+          "Video Editing",
+          "Social Media Design",
+          "Social Media Management",
+          "Paid Advertising",
+          "Website Design",
+          "SEO"
+        ],
+        "img": "prime"
+      },
+      {
+        "id": "rowad",
+        "name": "ROWAD AL QIMMA",
+        "description": "Partnered with RESPECT to strengthen brand positioning and create cohesive social media presence.",
+        "services": [
+          "Branding",
+          "Social Media Management",
+          "Social Media Design",
+          "Video Editing",
+          "Paid Advertising",
+          "Website Design",
+          "SEO"
+        ],
+        "img": "rowad"
+      },
+      {
+        "id": "abo-tarik",
+        "name": "Abo Tarik",
+        "description": "Worked with RESPECT to build compelling media content and strategic social campaigns.",
+        "services": [
+          "Media Production",
+          "Video Editing",
+          "Content Planning",
+          "Social Media Campaign",
+          "Social Media Design"
+        ],
+        "img": "abotarik"
+      },
+      {
+        "id": "zamalek",
+        "name": "ZAMALEK SC",
+        "description": "Produced training videos to showcase team preparation and skill development.",
+        "services": ["Video Editing"],
+        "img": "zamalek"
+      },
+      {
+        "id": "eeis",
+        "name": "EEIS",
+        "description": "Rebranded company with updated visual identity and enhanced online presence.",
+        "services": [
+          "Rebranding",
+          "Printing Materials",
+          "Marketing Strategy",
+          "Website Design",
+          "SEO",
+          "Social Media Design"
+        ],
+        "img": "eeis"
+      },
+      {
+        "id": "soun",
+        "name": "SOUN",
+        "description": "Designed and built a modern, high-performance website.",
+        "services": ["Website Design"],
+        "img": "soun"
+      },
+      {
+        "id": "civilia",
+        "name": "CIVILIA",
+        "description": "Teamed up with RESPECT to establish brand strategy and create consistent content across all channels.",
+        "services": [
+          "Website Design",
+          "Social Media Design",
+          "Content Strategy",
+          "Content Planning",
+          "Marketing Strategy",
+          "Video Editing",
+          "Media Production",
+          "Printing Materials",
+          "Paid Advertising"
+        ],
+        "img": "civilia"
+      },
+      {
+        "id": "addmix",
+        "name": "Addmix",
+        "description": "Launched a comprehensive marketing approach with strategic content and paid campaigns.",
+        "services": [
+          "Marketing Strategy",
+          "Social Media Design",
+          "Social Media Management",
+          "Content Strategy",
+          "Content Planning",
+          "Paid Advertising",
+          "Media Production",
+          "Video Editing"
+        ],
+        "img": "addmix"
+      },
+      {
+        "id": "adri",
+        "name": "Adri & Loka",
+        "description": "Built complete brand presence with strategic marketing and quality media production.",
+        "services": [
+          "Media Production",
+          "Video Editing",
+          "Branding",
+          "Social Media Design",
+          "Social Media Management",
+          "Paid Advertising",
+          "Content Strategy",
+          "Content Planning",
+          "Marketing Strategy"
+        ],
+        "img": "adri"
+      },
+      {
+        "id": "ihome",
+        "name": "IHOME",
+        "description": "Established strong brand identity with strategic positioning and visual consistency.",
+        "services": [
+          "Branding Strategy",
+          "Brand Positioning",
+          "Visual Identity"
+        ],
+        "img": "ihome"
+      },
+      {
+        "id": "khedewey",
+        "name": "KOSHARY EL KHEDEWEY",
+        "description": "Created comprehensive brand and marketing strategy with engaging social media presence.",
+        "services": [
+          "Branding",
+          "Social Media Design",
+          "Social Media Management",
+          "Content Strategy",
+          "Content Planning",
+          "Marketing Strategy"
+        ],
+        "img": "khedewey"
+      },
+      {
+        "id": "kokh",
+        "name": "KOKH",
+        "description": "Produced high-quality media content to strengthen brand presence.",
+        "services": ["Media Production", "Video Editing"],
+        "img": "kokh"
+      },
+      {
+        "id": "niche",
+        "name": "NICHE ESSENCE",
+        "description": "Developed marketing strategy and consistent social media presence with paid campaigns.",
+        "services": [
+          "Marketing Strategy",
+          "Marketing Planning",
+          "Social Media Management",
+          "Media Production",
+          "Social Media Design",
+          "Video Editing",
+          "Paid Advertising"
+        ],
+        "img": "niche"
+      },
+      {
+        "id": "fitrah",
+        "name": "FITRAH",
+        "description": "Built complete digital ecosystem with branding, website, and comprehensive content strategy.",
+        "services": [
+          "Branding",
+          "Website Design",
+          "Social Media Management",
+          "Social Media Design",
+          "Media Production",
+          "Video Editing",
+          "SEO",
+          "Marketing Strategy",
+          "Content Strategy",
+          "Content Planning"
+        ],
+        "img": "fitrah"
+      },
+      {
+        "id": "sabrosso",
+        "name": "SABROSSO",
+        "description": "Strengthened brand presence through strategic content planning and paid social campaigns.",
+        "services": [
+          "Social Media Design",
+          "Paid Advertising",
+          "Social Media Management",
+          "Media Production",
+          "Content Planning",
+          "Content Strategy"
+        ],
+        "img": "sabrosso"
+      },
+      {
+        "id": "kasr",
+        "name": "KASR EL KOSHARY",
+        "description": "Built content strategy and managed social media presence with consistent design.",
+        "services": [
+          "Content Planning",
+          "Content Strategy",
+          "Social Media Design",
+          "Social Media Management"
+        ],
+        "img": "kasr"
+      },
+      {
+        "id": "asswehly",
+        "name": "ASSWEHLY SC",
+        "description": "Created a match promo video to generate excitement and fan engagement.",
+        "services": ["Video Editing"],
+        "img": "asswehly"
       }
     ]
   },
@@ -146,8 +341,25 @@
       }
     ]
   },
+  "TeamPillars": {
+    "truth": {
+      "title": "TRUTH",
+      "description": "We tell you what you need to hear, not what's easy to say. Honest data, clear expectations, and real numbers  even when the truth is uncomfortable."
+    },
+    "simplicity": {
+      "title": "SIMPLICITY",
+      "description": "Growth gets complicated on its own. We do the opposite  turning tangled problems into clear systems and simple decisions you can act on."
+    },
+    "impact": {
+      "title": "IMPACT",
+      "description": "We measure our work by your results, not our activity. Every system we build is designed to move a number that matters to your business."
+    },
+    "team": {
+      "title": "OUR TEAM",
+      "description": "Behind every system is a team that treats your business like their own  strategists, designers, and builders united by one standard: work that earns respect."
+    }
+  },
   "HowWeWork": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copy used only to unblock development. Not sourced from the SEO Document (see SEO_GAPS.md Gap 5, no confirmed unified process existed). Must be replaced with business-approved copy before launch.",
     "heading": "How We Work",
     "intro": "Every successful project follows a clear process. Our approach keeps every step aligned with your business goals while ensuring transparency, quality, and measurable progress.",
     "items": [
@@ -174,12 +386,10 @@
     ]
   },
   "FinalCTA": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copy used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
     "heading": "Ready to build a business that grows by design?",
     "body": "Let's discuss your goals and explore how RESPECT can help you build stronger systems, brands, and digital experiences."
   },
   "Contact": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copy (heading, field labels, placeholders, service options, and privacy note) used only to unblock development. Not sourced from the SEO Document. Must be replaced with business-approved copy before launch.",
     "heading": "Tell Us About Your Business",
     "subheading": "Share a few details below and our team will get back to you shortly.",
     "requiredIndicator": "(required)",
@@ -196,6 +406,9 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Tell us about your project",
     "submitLabel": "Send Message",
+    "sendingLabel": "Sending...",
+    "successMessage": "Message sent successfully! We'll get back to you soon.",
+    "errorMessage": "Failed to send message. Please try again.",
     "privacyNote": "Your information is kept private and used only to respond to your inquiry.",
     "items": [
       { "id": "branding", "label": "Branding" },
@@ -212,12 +425,32 @@
     ]
   },
   "Footer": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder copyright/legal text used only to unblock development. Not sourced from the SEO Document (see BUSINESS_GAPS.md Gap 8  legal text, social links, and footer navigation copy are unconfirmed). Must be replaced with business/legal-approved copy before launch. Social links are intentionally omitted pending confirmation of which platforms/handles to include.",
-    "copyright": "© {year} RESPECT. All rights reserved."
-  },
+    "ctaBand": {
+      "heading": "Ready to earn respect?",
+      "subheading": "Let's build your growth system together.",
+      "button": "Start a Project"
+    },
+    "tagline": "Transforming ambitious companies into growth systems.",
+    "sections": {
+      "navigation": "Navigation",
+      "services": "Services",
+      "contact": "Contact",
+      "viewAll": "View All →"
+    },
+    "contact": {
+      "whatsappLabel": "WhatsApp",
+      "whatsapp": "+20 111 106 7066",
+      "whatsappNote": "Available daily for inquiries",
+      "email": "info@respect-solutions.com",
+      "location": "El-Sheikh Zayed, Egypt"
+    },
+    "copyrightPrefix": "©",
+    "copyrightSuffix": "RESPECT",
+    "allRightsReserved": "All rights reserved",
+    "privacyPolicy": "Privacy & Policy"
+},
   "WhatsApp": {
-    "_temporary": "TEMPORARY BUSINESS CONTENT  placeholder phone number and greeting used only to unblock development. Not a real number (see BUSINESS_GAPS.md Gap 5  the WhatsApp number and any copy are an unconfirmed business decision). Must be replaced with the business-approved number and copy before launch.",
-    "phoneNumber": "201000000000",
+    "phoneNumber": "201111067066",
     "greeting": "Hi, I'm interested in learning more about RESPECT.",
     "label": "Chat with us on WhatsApp"
   }

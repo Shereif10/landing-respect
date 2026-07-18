@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export type Process = {
   id: string;
   title: string;
@@ -12,13 +14,7 @@ const PROCESS_ICONS: Record<string, string> = {
   optimize: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='%2300770E' stroke-width='2.5'/%3E%3Cpath d='M30 15 L35 28 L48 30 L38 38 L40 50 L30 45 L20 50 L22 38 L12 30 L25 28 Z' fill='%2300770E' opacity='0.3'/%3E%3C/svg%3E`,
 };
 
-export function ProcessCard({
-  process,
-  index,
-}: {
-  process: Process;
-  index: number;
-}) {
+export function ProcessCard({ process }: { process: Process }) {
   const iconSrc = PROCESS_ICONS[process.id] || PROCESS_ICONS.discover;
 
   return (
@@ -40,9 +36,12 @@ export function ProcessCard({
     >
       {/* Icon placeholder — replace with real SVG when ready */}
       <div className="mb-4 flex h-16 w-16 items-center justify-center transition-transform duration-300 group-hover:scale-110">
-        <img
+        <Image
           src={iconSrc}
           alt=""
+          width={64}
+          height={64}
+          unoptimized
           className="transition-filter h-full w-full duration-300 group-hover:brightness-125"
         />
       </div>

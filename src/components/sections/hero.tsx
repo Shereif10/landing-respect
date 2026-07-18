@@ -11,6 +11,7 @@ export async function Hero({ locale }: { locale: string }) {
 
   return (
     <HeroClient
+      locale={locale}
       headlinePart1={t("headlinePart1")}
       headlinePart2={t("headlinePart2")}
       wordmarkAlt={t("wordmarkAlt")}

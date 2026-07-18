@@ -40,7 +40,7 @@ function NavLinks({
             } ${
               isActive
                 ? "text-brand-main font-semibold"
-                : "text-grey-10 hover:text-brand-main font-medium"
+                : "text-grey-9 hover:text-brand-main font-medium"
             }`}
           >
             <span

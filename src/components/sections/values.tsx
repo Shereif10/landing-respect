@@ -1,6 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { ValuesGridClient } from "@/components/ui/values-grid-client";
+import dynamic from "next/dynamic";
 import type { Value } from "@/components/ui/value-card";
+
+const ValuesGridClient = dynamic(() =>
+  import("@/components/ui/values-grid-client").then(
+    (mod) => mod.ValuesGridClient,
+  ),
+);
 
 // `locale` is required explicitly (not read implicitly) to keep this page
 // statically prerendered — see the comment in app/[locale]/page.tsx.

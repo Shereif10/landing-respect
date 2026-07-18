@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { NAV_LINKS } from "@/components/layout/nav-links";
-import { FooterTwoTone } from "@/components/layout/footer-client";
+import { FooterClient } from "@/components/layout/footer-client";
+import type { FooterStrings } from "@/components/layout/footer-client";
 
 type ServiceItem = { id: string; title: string };
 type NavLink = { key: string; href: string; label: string };
@@ -8,6 +9,7 @@ type NavLink = { key: string; href: string; label: string };
 export async function Footer({ locale }: { locale: string }) {
   const navT = await getTranslations({ locale, namespace: "Nav" });
   const servicesT = await getTranslations({ locale, namespace: "Services" });
+  const footerT = await getTranslations({ locale, namespace: "Footer" });
 
   const services = servicesT.raw("items") as ServiceItem[];
   const year = new Date().getFullYear();
@@ -20,12 +22,34 @@ export async function Footer({ locale }: { locale: string }) {
 
   const logoAlt = navT("logoAlt");
 
+  // Build copyright without intl placeholders (avoids FORMATTING_ERROR)
+  const copyright = `${footerT("copyrightPrefix")} ${year} ${footerT("copyrightSuffix")} · ${footerT("allRightsReserved")}`;
+
+  const footerStrings: FooterStrings = {
+    tagline: footerT("tagline"),
+    sections: {
+      navigation: footerT("sections.navigation"),
+      services: footerT("sections.services"),
+      contact: footerT("sections.contact"),
+      viewAll: footerT("sections.viewAll"),
+    },
+    contact: {
+      whatsappLabel: footerT("contact.whatsappLabel"),
+      whatsapp: footerT("contact.whatsapp"),
+      whatsappNote: footerT("contact.whatsappNote"),
+      email: footerT("contact.email"),
+      location: footerT("contact.location"),
+    },
+    copyright,
+    privacyPolicy: footerT("privacyPolicy"),
+  };
+
   return (
-    <FooterTwoTone
+    <FooterClient
       navLinks={navLinks}
       logoAlt={logoAlt}
       services={services}
-      year={year}
+      footerT={footerStrings}
     />
   );
 }

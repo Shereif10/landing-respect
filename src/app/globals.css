@@ -99,7 +99,6 @@
    */
   --font-djingo: "Djingo", sans-serif;
 }
-
 @layer base {
   body {
     background-color: var(--color-background);

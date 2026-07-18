@@ -1,13 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image, { type StaticImageData } from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap } from "@/lib/gsap";
 
 export type ClientLogo = {
   key: string;
@@ -18,12 +13,16 @@ const DESKTOP_SPEED_PX_PER_SEC = 30;
 const MOBILE_SPEED_PX_PER_SEC = 30;
 const MOBILE_BREAKPOINT_PX = 768;
 
-function shuffleArray<T>(arr: T[]): T[] {
-  const result = [...arr];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
+function distributeRoundRobin<T>(arr: T[], buckets: number): T[][] {
+  // Deterministic distribution: same output on server and client, so the
+  // SSR'd HTML always matches hydration (Math.random() here previously
+  // produced a different order on each side → hydration mismatch).
+  // Round-robin still interleaves neighboring logos across rows, which
+  // reads as "mixed" without any randomness.
+  const result: T[][] = Array.from({ length: buckets }, () => []);
+  arr.forEach((item, i) => {
+    result[i % buckets].push(item);
+  });
   return result;
 }
 
@@ -37,23 +36,15 @@ export function TrustedByClient({
   const sectionRef = useRef<HTMLElement>(null);
   const track1Ref = useRef<HTMLDivElement>(null);
   const track2Ref = useRef<HTMLDivElement>(null);
+  const track3Ref = useRef<HTMLDivElement>(null);
 
-  // Initial render (server + first client paint) uses the SAME order
-  // as passed in, so there's no hydration mismatch.
-  const [row1Logos, setRow1Logos] = useState(logos);
-  const [row2Logos, setRow2Logos] = useState(logos);
-
-  // Shuffle only after mount — runs client-side only, after hydration
-  // is already complete, so React doesn't compare it against SSR output.
-  useEffect(() => {
-    setRow1Logos(shuffleArray(logos));
-    setRow2Logos(shuffleArray(logos));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Pure, deterministic split — identical on server and client, so no
+  // hydration mismatch and no extra render cycle.
+  const [row1Logos, row2Logos, row3Logos] = distributeRoundRobin(logos, 3);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from([track1Ref.current, track2Ref.current], {
+      gsap.from([track1Ref.current, track2Ref.current, track3Ref.current], {
         opacity: 0,
         scale: 0.96,
         duration: 0.7,
@@ -68,16 +59,19 @@ export function TrustedByClient({
       const isRTL = getComputedStyle(sectionRef.current!).direction === "rtl";
       let marquee1: gsap.core.Tween | undefined;
       let marquee2: gsap.core.Tween | undefined;
+      let marquee3: gsap.core.Tween | undefined;
 
       const startMarquees = () => {
         marquee1?.kill();
         marquee2?.kill();
+        marquee3?.kill();
 
         const speed =
           window.innerWidth < MOBILE_BREAKPOINT_PX
             ? MOBILE_SPEED_PX_PER_SEC
             : DESKTOP_SPEED_PX_PER_SEC;
 
+        // Row 1 - moves right to left
         if (track1Ref.current) {
           const setWidth = track1Ref.current.scrollWidth / 2;
           const duration = setWidth / speed;
@@ -100,6 +94,7 @@ export function TrustedByClient({
           });
         }
 
+        // Row 2 - moves left to right
         if (track2Ref.current) {
           const setWidth = track2Ref.current.scrollWidth / 2;
           const duration = setWidth / speed;
@@ -126,6 +121,29 @@ export function TrustedByClient({
             },
           });
         }
+
+        // Row 3 - moves right to left (same as row 1)
+        if (track3Ref.current) {
+          const setWidth = track3Ref.current.scrollWidth / 2;
+          const duration = setWidth / speed;
+          const dir3 = isRTL ? 1 : -1;
+
+          gsap.set(track3Ref.current, { x: 0 });
+          marquee3 = gsap.to(track3Ref.current, {
+            x: dir3 * setWidth,
+            duration,
+            ease: "none",
+            repeat: -1,
+            modifiers: {
+              x: gsap.utils.unitize((x) => {
+                let v = parseFloat(x) % setWidth;
+                if (dir3 < 0 && v > 0) v -= setWidth;
+                if (dir3 > 0 && v < 0) v += setWidth;
+                return v;
+              }),
+            },
+          });
+        }
       };
 
       startMarquees();
@@ -135,11 +153,12 @@ export function TrustedByClient({
         window.removeEventListener("resize", startMarquees);
         marquee1?.kill();
         marquee2?.kill();
+        marquee3?.kill();
       };
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [row1Logos, row2Logos]);
+  }, [logos]);
 
   const logoClassName =
     "h-auto max-h-[80px] w-auto shrink-0 grayscale-0 transition-[filter] duration-[250ms] ease-out hover:grayscale motion-reduce:transition-none";
@@ -153,39 +172,49 @@ export function TrustedByClient({
       </div>
 
       <div className="w-full space-y-8 lg:space-y-10">
-        <div
-          className=" w-full overflow-hidden py-8"
-          aria-hidden="true"
-        >
+        {/* Row 1 - Right to Left */}
+        <div className="w-full overflow-hidden py-8" aria-hidden="true">
           <div ref={track1Ref} className="flex w-max items-center gap-16">
-            {[...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos].map(
-              (logo, index) => (
-                <Image
-                  key={`row1-${logo.key}-${index}`}
-                  src={logo.src}
-                  alt=""
-                  className={logoClassName}
-                />
-              ),
-            )}
+            {/* كل لوجو في هالصف بيظهر مرتين في الـ marquee loop */}
+            {[...row1Logos, ...row1Logos].map((logo, index) => (
+              <Image
+                key={`row1-${logo.key}-${index}`}
+                src={logo.src}
+                alt=""
+                unoptimized
+                className={logoClassName}
+              />
+            ))}
           </div>
         </div>
 
-        <div
-          className=" w-full overflow-hidden py-8"
-          aria-hidden="true"
-        >
+        {/* Row 2 - Left to Right */}
+        <div className="w-full overflow-hidden py-8" aria-hidden="true">
           <div ref={track2Ref} className="flex w-max items-center gap-16">
-            {[...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos].map(
-              (logo, index) => (
-                <Image
-                  key={`row2-${logo.key}-${index}`}
-                  src={logo.src}
-                  alt=""
-                  className={logoClassName}
-                />
-              ),
-            )}
+            {[...row2Logos, ...row2Logos].map((logo, index) => (
+              <Image
+                key={`row2-${logo.key}-${index}`}
+                src={logo.src}
+                alt=""
+                unoptimized
+                className={logoClassName}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Row 3 - Right to Left */}
+        <div className="w-full overflow-hidden py-8" aria-hidden="true">
+          <div ref={track3Ref} className="flex w-max items-center gap-16">
+            {[...row3Logos, ...row3Logos].map((logo, index) => (
+              <Image
+                key={`row3-${logo.key}-${index}`}
+                src={logo.src}
+                alt=""
+                unoptimized
+                className={logoClassName}
+              />
+            ))}
           </div>
         </div>
       </div>

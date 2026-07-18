@@ -1,6 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { HowWeWorkClient } from "@/components/sections/how-we-work-client";
+import dynamic from "next/dynamic";
 import type { Process } from "@/components/ui/process-card";
+
+const HowWeWorkClient = dynamic(() =>
+  import("@/components/sections/how-we-work-client").then(
+    (mod) => mod.HowWeWorkClient,
+  ),
+);
 
 // `locale` is required explicitly (not read implicitly) to keep this page
 // statically prerendered — see the comment in app/[locale]/page.tsx.

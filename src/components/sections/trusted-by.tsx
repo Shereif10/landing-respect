@@ -6,7 +6,6 @@ import {
 import Logo1 from "@/assets/svg/clients/1.svg";
 import Logo2 from "@/assets/svg/clients/2.svg";
 import Logo3 from "@/assets/svg/clients/3.svg";
-import Logo4 from "@/assets/svg/clients/4.svg";
 import Logo5 from "@/assets/svg/clients/5.svg";
 import Logo6 from "@/assets/svg/clients/6.svg";
 import Logo7 from "@/assets/svg/clients/7.svg";
@@ -25,6 +24,17 @@ import Logo19 from "@/assets/svg/clients/19.svg";
 import Logo20 from "@/assets/svg/clients/20.svg";
 import Logo21 from "@/assets/svg/clients/21.svg";
 import Logo22 from "@/assets/svg/clients/22.svg";
+import Logo23 from "@/assets/svg/clients/23.svg";
+import Logo24 from "@/assets/svg/clients/24.svg";
+import Logo25 from "@/assets/svg/clients/25.svg";
+import Logo26 from "@/assets/svg/clients/26.svg";
+import Logo27 from "@/assets/svg/clients/27.svg";
+import Logo28 from "@/assets/svg/clients/28.svg";
+import Logo29 from "@/assets/svg/clients/29.svg";
+import Logo30 from "@/assets/svg/clients/30.svg";
+import Logo31 from "@/assets/svg/clients/31.svg";
+import Logo32 from "@/assets/svg/clients/32.svg";
+import Logo33 from "@/assets/svg/clients/33.svg";
 
 // `image 6.svg` and `Layer_1-5.svg` (of the 7 files dropped into
 // src/assets/svg/clients/) are 0-byte files — broken exports, not real
@@ -34,8 +44,8 @@ const LOGOS: ClientLogo[] = [
   { key: "logo-1", src: Logo1 },
   { key: "logo-2", src: Logo2 },
   { key: "logo-3", src: Logo3 },
-  { key: "logo-4", src: Logo4 },
   { key: "logo-5", src: Logo5 },
+  { key: "logo-6", src: Logo6 },
   { key: "logo-7", src: Logo7 },
   { key: "logo-8", src: Logo8 },
   { key: "logo-9", src: Logo9 },
@@ -51,8 +61,18 @@ const LOGOS: ClientLogo[] = [
   { key: "logo-19", src: Logo19 },
   { key: "logo-20", src: Logo20 },
   { key: "logo-21", src: Logo21 },
-  { key: "logo-22", src: Logo22 }
-  
+  { key: "logo-22", src: Logo22 },
+  { key: "logo-23", src: Logo23 },
+  { key: "logo-24", src: Logo24 },
+  { key: "logo-25", src: Logo25 },
+  { key: "logo-26", src: Logo26 },
+  { key: "logo-27", src: Logo27 },
+  { key: "logo-28", src: Logo28 },
+  { key: "logo-29", src: Logo29 },
+  { key: "logo-30", src: Logo30 },
+  { key: "logo-31", src: Logo31 },
+  { key: "logo-32", src: Logo32 },
+  { key: "logo-33", src: Logo33 }
 ];
 
 // `locale` is required explicitly (not read implicitly) to keep this page

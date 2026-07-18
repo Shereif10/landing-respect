@@ -1,13 +1,8 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/lib/gsap";
 import { ValueCard, type Value } from "@/components/ui/value-card";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export function ValuesGridClient({ values }: { values: Value[] }) {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -43,6 +38,10 @@ export function ValuesGridClient({ values }: { values: Value[] }) {
     <div
       ref={gridRef}
       className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
+      style={{
+        alignItems: "stretch", // جميع الكروت تبدأ من نفس النقطة
+        justifyContent: "start",
+      }}
     >
       {values.map((value) => (
         <ValueCard key={value.id} value={value} />

@@ -10,14 +10,18 @@ export function FormField({
   label,
   required = false,
   requiredIndicator,
+  error,
   children,
 }: {
   id: string;
   label: string;
   required?: boolean;
   requiredIndicator?: string;
+  error?: string;
   children: ReactNode;
 }) {
+  const errorId = `${id}-error`;
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="text-sm font-bold text-grey-10">
@@ -35,6 +39,11 @@ export function FormField({
         )}
       </label>
       {children}
+      {error && (
+        <p id={errorId} role="alert" className="text-sm font-medium text-red-500">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { SITE_URL } from "@/lib/site-config";
 import "@/app/globals.css";
 
 const RTL_LOCALES = new Set(["ar"]);
@@ -21,21 +22,38 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
+  const title = t("title");
+  const description = t("description");
+  const ogLocale = locale === "ar" ? "ar_AR" : "en_US";
+
   // hreflang alternates for the bilingual routes. Confirmed against actual
   // middleware behavior: localePrefix defaults to "always" (not overridden
   // in routing.ts), so the default locale lives at /en, not bare / — "/"
   // 307-redirects to /en. x-default points at routing.defaultLocale for
-  // the same reason. No metadataBase is set yet (no confirmed production
-  // domain), so these resolve as relative paths — valid Next.js metadata
-  // now, upgradeable to absolute URLs once a domain is confirmed.
+  // the same reason.
   return {
-    title: t("title"),
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
     alternates: {
       canonical: `/${locale}`,
       languages: {
         ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])),
         "x-default": `/${routing.defaultLocale}`,
       },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}`,
+      siteName: title,
+      locale: ogLocale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
     },
   };
 }
@@ -74,9 +92,22 @@ export default async function LocaleLayout({
   const skipLinkLabel =
     locale === "ar" ? "تخطي إلى المحتوى الرئيسي" : "Skip to main content";
 
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: t("title"),
+    description: t("description"),
+    url: `${SITE_URL}/${locale}`,
+  };
+
   return (
     <html lang={locale} dir={dir}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-main focus:px-4 focus:py-2 focus:text-grey-1"

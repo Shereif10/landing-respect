@@ -1,16 +1,14 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
-type CaseStudy = {
+export type CaseStudy = {
   id: string;
   name: string;
   description: string;
   services: string[];
+  image: StaticImageData; // ← صورة حقيقية لكل مشروع
 };
 
 export function CaseStudyCard({ item }: { item: CaseStudy }) {
-  // Lorem placeholder image — replace with real project screenshot
-  const placeholderImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23E8DCC8' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='%23999' text-anchor='middle' dy='.3em'%3EProject Screenshot%3C/text%3E%3C/svg%3E`;
-
   return (
     <div
       style={{
@@ -27,16 +25,18 @@ export function CaseStudyCard({ item }: { item: CaseStudy }) {
         "motion-reduce:transition-none",
       ].join(" ")}
     >
-      {/* Image placeholder */}
-      <div className="bg-grey-1 relative h-48 w-full overflow-hidden lg:h-56">
+      {/* Real project image */}
+      <div className="bg-grey-1 relative h-100 w-full overflow-hidden ">
         <Image
-          src={placeholderImage}
+          src={item.image}
           alt={item.name}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className=" transition-transform duration-300 group-hover:scale-105"
+          priority={false}
         />
         {/* Overlay on hover */}
-        <div className="bg-brand-main/0 group-hover:bg-brand-main/10 absolute inset-0 transition-colors duration-300" />
+        <div className="bg-brand-main/0  absolute inset-0 transition-colors duration-300" />
       </div>
 
       {/* Content */}

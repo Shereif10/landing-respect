@@ -1,13 +1,8 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/lib/gsap";
 import { ProcessCard, type Process } from "@/components/ui/process-card";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface HowWeWorkClientProps {
   heading: string;
@@ -122,7 +117,7 @@ export function HowWeWorkClient({
             </div>
 
             {/* Card */}
-            <ProcessCard process={step} index={index} />
+            <ProcessCard process={step} />
           </div>
         ))}
       </div>

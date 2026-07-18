@@ -1,6 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { ContactClient } from "@/components/sections/contact-client";
+import dynamic from "next/dynamic";
 import type { SelectOption } from "@/components/ui/select-field";
+
+const ContactClient = dynamic(() =>
+  import("@/components/sections/contact-client").then(
+    (mod) => mod.ContactClient,
+  ),
+);
 
 // `locale` is required explicitly (not read implicitly) to keep this page
 // statically prerendered — see the comment in app/[locale]/page.tsx.
@@ -32,6 +38,9 @@ export async function Contact({ locale }: { locale: string }) {
       subheading={t("subheading")}
       requiredIndicator={t("requiredIndicator")}
       submitLabel={t("submitLabel")}
+      sendingLabel={t("sendingLabel")}
+      successMessage={t("successMessage")}
+      errorMessage={t("errorMessage")}
       privacyNote={t("privacyNote")}
       fields={fields}
       serviceItems={items}

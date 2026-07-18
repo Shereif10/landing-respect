@@ -1,16 +1,14 @@
 "use client";
 
-import { useLayoutEffect, useRef, FormEvent } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { gsap } from "@/lib/gsap";
 import { FormField } from "@/components/ui/form-field";
 import { TextInput } from "@/components/ui/text-input";
 import { TextArea } from "@/components/ui/text-area";
 import { SelectField, type SelectOption } from "@/components/ui/select-field";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 type ContactFieldCopy = {
   label: string;
@@ -31,16 +29,34 @@ interface ContactClientProps {
   subheading: string;
   requiredIndicator: string;
   submitLabel: string;
+  sendingLabel: string;
+  successMessage: string;
+  errorMessage: string;
   privacyNote: string;
   fields: ContactFormFields;
   serviceItems: SelectOption[];
 }
+
+// Validation schema
+const contactFormSchema = z.object({
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  service: z.string().min(1, "Please select a service"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export function ContactClient({
   heading,
   subheading,
   requiredIndicator,
   submitLabel,
+  sendingLabel,
+  successMessage,
+  errorMessage,
   privacyNote,
   fields,
   serviceItems,
@@ -48,14 +64,33 @@ export function ContactClient({
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const resetStatusTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetStatusTimeout.current) clearTimeout(resetStatusTimeout.current);
+    };
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+  });
 
   useLayoutEffect(() => {
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduce-motion: reduce)",
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     const ctx = gsap.context(() => {
-      // Heading + subheading fade in
       gsap.from([headingRef.current, ".contact-subheading"], {
         opacity: 0,
         y: 20,
@@ -69,7 +104,6 @@ export function ContactClient({
         },
       });
 
-      // Form fields stagger entrance
       const formFields = formRef.current?.querySelectorAll("[data-form-field]");
       if (formFields) {
         gsap.from(formFields, {
@@ -86,7 +120,6 @@ export function ContactClient({
         });
       }
 
-      // Submit button entrance
       gsap.from(".contact-submit-button", {
         opacity: 0,
         scale: 0.9,
@@ -101,7 +134,6 @@ export function ContactClient({
         },
       });
 
-      // Privacy note fade
       gsap.from(".contact-privacy-note", {
         opacity: 0,
         duration: 0.6,
@@ -117,13 +149,56 @@ export function ContactClient({
     return () => ctx.revert();
   }, [fields, serviceItems.length]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // TODO: Backend integration
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      // Web3Forms API
+      const formData = new FormData();
+      formData.append(
+        "access_key",
+        process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
+      );
+      formData.append("fullName", data.fullName);
+      formData.append("email", data.email);
+      formData.append("company", data.company || "");
+      formData.append("phone", data.phone || "");
+      formData.append("service", data.service);
+      formData.append("message", data.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        reset();
+      } else {
+        setSubmitStatus("error");
+      }
+      resetStatusTimeout.current = setTimeout(
+        () => setSubmitStatus("idle"),
+        5000,
+      );
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+      resetStatusTimeout.current = setTimeout(
+        () => setSubmitStatus("idle"),
+        5000,
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClassName =
     "border-2 border-grey-1 rounded-lg px-4 py-3 text-base transition-[border-color,box-shadow] duration-300 focus:border-brand-normal focus:outline-none focus:ring-2 focus:ring-brand-normal/20";
+
+  const errorClassName =
+    "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 
   return (
     <section
@@ -148,7 +223,7 @@ export function ContactClient({
         {/* Form */}
         <form
           ref={formRef}
-          onSubmit={handleSubmit}
+          onSubmit={(event) => handleSubmit(onSubmit)(event)}
           className="flex flex-col gap-6 lg:gap-8"
         >
           {/* Row 1: Full Name + Email */}
@@ -160,16 +235,15 @@ export function ContactClient({
                 label={fields.fullName.label}
                 required
                 requiredIndicator={requiredIndicator}
+                error={errors.fullName?.message}
               >
                 <TextInput
                   id="contact-full-name"
-                  name="fullName"
-                  type="text"
-                  autoComplete="name"
                   placeholder={fields.fullName.placeholder}
-                  required
-                  aria-required="true"
-                  className={inputClassName}
+                  {...register("fullName")}
+                  className={`${inputClassName} ${errors.fullName ? errorClassName : ""}`}
+                  aria-invalid={errors.fullName ? "true" : "false"}
+                  aria-describedby={errors.fullName ? "contact-full-name-error" : undefined}
                 />
               </FormField>
             </div>
@@ -181,16 +255,16 @@ export function ContactClient({
                 label={fields.email.label}
                 required
                 requiredIndicator={requiredIndicator}
+                error={errors.email?.message}
               >
                 <TextInput
                   id="contact-email"
-                  name="email"
                   type="email"
-                  autoComplete="email"
                   placeholder={fields.email.placeholder}
-                  required
-                  aria-required="true"
-                  className={inputClassName}
+                  {...register("email")}
+                  className={`${inputClassName} ${errors.email ? errorClassName : ""}`}
+                  aria-invalid={errors.email ? "true" : "false"}
+                  aria-describedby={errors.email ? "contact-email-error" : undefined}
                 />
               </FormField>
             </div>
@@ -203,10 +277,8 @@ export function ContactClient({
               <FormField id="contact-company" label={fields.company.label}>
                 <TextInput
                   id="contact-company"
-                  name="company"
-                  type="text"
-                  autoComplete="organization"
                   placeholder={fields.company.placeholder}
+                  {...register("company")}
                   className={inputClassName}
                 />
               </FormField>
@@ -217,10 +289,9 @@ export function ContactClient({
               <FormField id="contact-phone" label={fields.phone.label}>
                 <TextInput
                   id="contact-phone"
-                  name="phone"
                   type="tel"
-                  autoComplete="tel"
                   placeholder={fields.phone.placeholder}
+                  {...register("phone")}
                   className={inputClassName}
                 />
               </FormField>
@@ -234,15 +305,16 @@ export function ContactClient({
               label={fields.service.label}
               required
               requiredIndicator={requiredIndicator}
+              error={errors.service?.message}
             >
               <SelectField
                 id="contact-service"
-                name="service"
                 placeholder={fields.service.placeholder}
                 options={serviceItems}
-                required
-                aria-required="true"
-                className={inputClassName}
+                {...register("service")}
+                className={`${inputClassName} ${errors.service ? errorClassName : ""}`}
+                aria-invalid={errors.service ? "true" : "false"}
+                aria-describedby={errors.service ? "contact-service-error" : undefined}
               />
             </FormField>
           </div>
@@ -254,15 +326,16 @@ export function ContactClient({
               label={fields.message.label}
               required
               requiredIndicator={requiredIndicator}
+              error={errors.message?.message}
             >
               <TextArea
                 id="contact-message"
-                name="message"
                 rows={4}
                 placeholder={fields.message.placeholder}
-                required
-                aria-required="true"
-                className={inputClassName + " resize-none"}
+                {...register("message")}
+                className={`${inputClassName} resize-none ${errors.message ? errorClassName : ""}`}
+                aria-invalid={errors.message ? "true" : "false"}
+                aria-describedby={errors.message ? "contact-message-error" : undefined}
               />
             </FormField>
           </div>
@@ -270,6 +343,7 @@ export function ContactClient({
           {/* Submit Button */}
           <button
             type="submit"
+            disabled={isSubmitting}
             className={[
               "contact-submit-button",
               "mt-2 self-start px-12 py-4 lg:px-16 lg:py-5",
@@ -279,12 +353,32 @@ export function ContactClient({
               "transition-[background-color,border-color,color,box-shadow,transform] duration-300 ease-out",
               "hover:bg-brand-light hover:text-brand-main hover:border-brand-main hover:-translate-y-1 hover:shadow-lg",
               "active:scale-95",
+              "disabled:cursor-not-allowed disabled:opacity-60",
               "motion-reduce:transition-none",
             ].join(" ")}
           >
-            {submitLabel}
+            {isSubmitting ? sendingLabel : submitLabel}
           </button>
         </form>
+
+        {/* Submit Status Messages */}
+        {submitStatus === "success" && (
+          <div
+            role="status"
+            className="rounded-lg border border-green-200 bg-green-50 p-4 text-center text-green-800"
+          >
+            ✓ {successMessage}
+          </div>
+        )}
+
+        {submitStatus === "error" && (
+          <div
+            role="alert"
+            className="rounded-lg border border-red-200 bg-red-50 p-4 text-center text-red-800"
+          >
+            ✗ {errorMessage}
+          </div>
+        )}
 
         {/* Privacy Note */}
         <p className="contact-privacy-note text-grey-7 text-center text-sm leading-relaxed font-medium">
