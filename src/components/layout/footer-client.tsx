@@ -10,6 +10,7 @@ type ServiceItem = { id: string; title: string };
 
 export type FooterStrings = {
   tagline: string;
+  slogan: string;
   sections: {
     navigation: string;
     services: string;
@@ -127,6 +128,9 @@ export function FooterClient({
                 </a>
                 <p className="text-brand-light/80 max-w-[240px] text-sm leading-relaxed font-medium">
                   {footerT.tagline}
+                </p>
+                <p className="text-brand-normal text-[10px] leading-relaxed font-bold tracking-[0.15em] whitespace-pre-line uppercase">
+                  {footerT.slogan}
                 </p>
               </div>
 

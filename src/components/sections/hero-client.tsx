@@ -101,7 +101,7 @@ export function HeroClient({
     <section
       id="hero"
       ref={sectionRef}
-      className="relative mx-auto w-full max-w-[1280px] overflow-hidden px-6 pt-8 pb-24 lg:px-16 lg:pt-12 lg:pb-32"
+      className="relative mx-auto w-full max-w-[1280px] overflow-hidden px-6 pt-2 pb-24 lg:px-16 lg:pt-2 lg:pb-32"
     >
       {/* Ambient light, not decoration: one large, extremely soft, low-opacity
           wash tying the background to the navbar above and the R below it.
@@ -116,7 +116,7 @@ export function HeroClient({
       </div>
 
       <div className="relative flex flex-col items-center gap-16 lg:flex-row lg:items-center lg:gap-16">
-        <div className="flex w-full flex-col items-start gap-8 lg:w-2/5">
+        <div className="order-2 flex w-full flex-col items-start gap-8 lg:order-1 lg:w-2/5">
           <h1
             ref={headlineRef}
             className="text-grey-10 flex flex-col gap-4 text-[44px] leading-[1.12] md:text-[60px] lg:text-[76px] ltr:tracking-[0.02em]"
@@ -185,7 +185,7 @@ export function HeroClient({
           </div>
         </div>
 
-        <div className="w-full lg:w-3/5">
+        <div className="order-1 w-full lg:order-2 lg:w-3/5">
           <div
             ref={visualRef}
             className="relative mx-auto aspect-square w-full max-w-[560px] lg:max-w-none"

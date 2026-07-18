@@ -15,7 +15,13 @@ export type CaseStudy = {
 
 const INITIAL_DISPLAY_COUNT = 6;
 
-export function CaseStudiesGridClient({ items }: { items: CaseStudy[] }) {
+export function CaseStudiesGridClient({
+  items,
+  seeMoreLabel,
+}: {
+  items: CaseStudy[];
+  seeMoreLabel: string;
+}) {
   const gridRef = useRef<HTMLDivElement>(null);
   const animatedCountRef = useRef(0);
   const [showAll, setShowAll] = useState(false);
@@ -98,7 +104,7 @@ export function CaseStudiesGridClient({ items }: { items: CaseStudy[] }) {
               "motion-reduce:transition-none",
             ].join(" ")}
           >
-            See More Cases
+            {seeMoreLabel}
           </button>
         </div>
       )}

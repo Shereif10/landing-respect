@@ -90,7 +90,7 @@ export async function BusinessesWeHelped({ locale }: { locale: string }) {
         </p>
       </div>
 
-      <CaseStudiesGridClient items={caseStudies} />
+      <CaseStudiesGridClient items={caseStudies} seeMoreLabel={t("seeMoreCases")} />
     </section>
   );
 }

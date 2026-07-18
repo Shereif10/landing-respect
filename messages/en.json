@@ -86,6 +86,7 @@
   },
   "BusinessesWeHelped": {
     "intro": "We turn ambitious businesses into growth machines.",
+    "seeMoreCases": "See More Cases",
     "items": [
       {
         "id": "prime",
@@ -431,6 +432,7 @@
       "button": "Start a Project"
     },
     "tagline": "Transforming ambitious companies into growth systems.",
+    "slogan": "RESPECT THE PAST\nSHAPE THE FUTURE",
     "sections": {
       "navigation": "Navigation",
       "services": "Services",

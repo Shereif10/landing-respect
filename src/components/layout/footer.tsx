@@ -27,6 +27,7 @@ export async function Footer({ locale }: { locale: string }) {
 
   const footerStrings: FooterStrings = {
     tagline: footerT("tagline"),
+    slogan: footerT("slogan"),
     sections: {
       navigation: footerT("sections.navigation"),
       services: footerT("sections.services"),
