@@ -156,10 +156,7 @@ export function ContactClient({
     try {
       // Web3Forms API
       const formData = new FormData();
-      formData.append(
-        "access_key",
-        process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
-      );
+      formData.append("access_key", "1939a4ab-6307-4ddb-9174-111363606b12");
       formData.append("fullName", data.fullName);
       formData.append("email", data.email);
       formData.append("company", data.company || "");

@@ -129,7 +129,7 @@ export function SiteHeader() {
           : "border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-8 px-6 py-5 lg:px-16">
+      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-8 px-6 py-4 lg:px-16 lg:py-5">
         <a href="#hero" className="-m-2 shrink-0 p-2">
           <Image
             src={RespectLogo}
@@ -161,7 +161,7 @@ export function SiteHeader() {
           <Button
             href="#contact"
             variant="primary"
-            className="hidden shrink-0 !px-6 !py-3 !text-base shadow-sm transition-[box-shadow,transform] duration-[250ms] ease-out hover:-translate-y-px hover:shadow-md motion-reduce:transition-none lg:inline-flex"
+            className="!hidden shrink-0 !px-6 !py-3 !text-base shadow-sm transition-[box-shadow,transform] duration-[250ms] ease-out hover:-translate-y-px hover:shadow-md motion-reduce:transition-none lg:!inline-flex"
           >
             {t("cta")}
           </Button>
@@ -204,7 +204,13 @@ export function SiteHeader() {
           isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <div className="border-grey-2 min-h-0 border-t px-6 py-6">
+        <div
+          className={`min-h-0 overflow-hidden px-6 transition-[padding] duration-[250ms] ease-out motion-reduce:transition-none ${
+            isMenuOpen
+              ? "border-grey-2 border-t py-6"
+              : "border-t-0 py-0"
+          }`}
+        >
           <nav aria-label={t("mobileNav")} className="flex flex-col gap-6">
             <NavLinks
               activeHref={activeHref}

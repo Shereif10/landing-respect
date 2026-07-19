@@ -432,7 +432,6 @@
       "button": "Start a Project"
     },
     "tagline": "Transforming ambitious companies into growth systems.",
-    "slogan": "RESPECT THE PAST\nSHAPE THE FUTURE",
     "sections": {
       "navigation": "Navigation",
       "services": "Services",
@@ -451,6 +450,58 @@
     "allRightsReserved": "All rights reserved",
     "privacyPolicy": "Privacy & Policy"
 },
+  "PrivacyPolicy": {
+    "title": "Privacy Policy",
+    "intro": "RESPECT (\"we,\" \"our,\" or \"us\") is a marketing and business-growth agency. This Privacy Policy explains what personal information we collect through this website, how we use it, and the choices available to you. By submitting information through our contact form, you agree to the practices described below.",
+    "closeLabel": "Close",
+    "gotIt": "Got it",
+    "sections": [
+      {
+        "heading": "1. Information We Collect",
+        "body": "We collect the information you choose to share with us directly, most commonly through our contact form or project inquiries. This may include your full name, email address, phone number, company or business name, the service you are interested in, and any details or messages you include about your project."
+      },
+      {
+        "heading": "2. How We Use Your Information",
+        "body": "We use the information you submit to respond to your inquiry, understand your goals, and follow up about the marketing, branding, or business services you requested. We may also use it to communicate with potential and existing clients, prepare proposals or quotes, and improve the content, functionality, and overall experience of our website."
+      },
+      {
+        "heading": "3. Cookies, Analytics, and Advertising Technologies",
+        "body": "This website does not currently use cookies or third-party analytics, advertising, or measurement tools. If we introduce such technologies in the future — for example, to understand website performance or measure the effectiveness of our marketing campaigns — we will update this Privacy Policy to describe what is used and how it affects your information."
+      },
+      {
+        "heading": "4. Third-Party Service Providers",
+        "body": "We use a trusted third-party service to process and deliver messages submitted through our contact form. This service receives the information you submit solely to transmit it to our team and is not used by RESPECT for any other purpose. We do not sell, rent, or trade your personal information to third parties for their own marketing purposes."
+      },
+      {
+        "heading": "5. Data Security",
+        "body": "We take reasonable technical and organizational measures to help protect the personal information submitted to us against unauthorized access, loss, misuse, or disclosure. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security."
+      },
+      {
+        "heading": "6. Data Retention",
+        "body": "We retain the information you submit for as long as reasonably necessary to respond to your inquiry, manage our client relationships, and meet our legitimate business, accounting, or legal record-keeping needs. When information is no longer needed for these purposes, we take reasonable steps to remove or dispose of it."
+      },
+      {
+        "heading": "7. Sharing and Disclosure of Information",
+        "body": "We do not sell your personal information. We may share information with service providers who help us operate our website or respond to inquiries (such as the form-processing service described above), or when required to do so by law or to protect our legal rights."
+      },
+      {
+        "heading": "8. Your Privacy Rights",
+        "body": "Depending on your location, you may have rights regarding the personal information we hold about you, such as requesting access to it, asking us to correct or update it, or requesting that we delete it. To exercise any of these rights, please contact us using the details below."
+      },
+      {
+        "heading": "9. Links to External Websites",
+        "body": "Our website may contain links to third-party websites, such as our social media profiles. We are not responsible for the privacy practices or content of these external sites, and we encourage you to review their own privacy policies."
+      },
+      {
+        "heading": "10. Changes to This Policy",
+        "body": "We may update this Privacy Policy from time to time to reflect changes in our practices or for legal or operational reasons. Any changes will be posted on this page, so we encourage you to review it periodically."
+      },
+      {
+        "heading": "11. Contact Us",
+        "body": "If you have any questions about this Privacy Policy or how your information is handled, please contact us at info@respect-solutions.com."
+      }
+    ]
+  },
   "WhatsApp": {
     "phoneNumber": "201111067066",
     "greeting": "Hi, I'm interested in learning more about RESPECT.",

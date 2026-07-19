@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import RespectLogo from "@/assets/svg/respect-logo.svg";
+import type { PrivacyPolicyContent } from "@/components/layout/privacy-modal";
 
 type NavLink = { key: string; href: string; label: string };
 type ServiceItem = { id: string; title: string };
 
 export type FooterStrings = {
   tagline: string;
-  slogan: string;
   sections: {
     navigation: string;
     services: string;
@@ -92,19 +92,42 @@ const SOCIAL_LINKS = [
 ];
 
 export function FooterClient({
+  locale,
   navLinks,
   logoAlt,
   services,
   footerT,
+  privacyPolicyContent,
 }: {
+  locale: string;
   navLinks: NavLink[];
   logoAlt: string;
   services: ServiceItem[];
   footerT: FooterStrings;
+  privacyPolicyContent: PrivacyPolicyContent;
 }) {
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const closePrivacyModal = useCallback(() => setIsPrivacyOpen(false), []);
 
   const whatsappDigits = footerT.contact.whatsapp.replace(/\D/g, "");
+
+  // Arabic's uppercase-transform + wide letter-spacing (both tuned for Latin
+  // caps) fight the script's cursive joining at this size, reading weaker
+  // than the English label despite being the same visual role — bumped a
+  // step and untracked so perceived weight matches, without touching color
+  // or the Latin labels.
+  //
+  // Color is #f8e2af, not the brand-normal token (#efba43) — Lighthouse
+  // measured brand-normal-on-brand-main at 3.23:1 here, below WCAG AA's
+  // 4.5:1 for text this small. Both colors sit in similar dark-luminance
+  // territory, so darkening the gold moves contrast further away from
+  // compliant; lightening it is the only same-hue direction that reaches
+  // 4.5:1, and #f8e2af is the minimum lightness that does (4.52:1) — scoped
+  // to just these four footer labels, not the brand-normal token itself.
+  const eyebrowClass =
+    locale === "ar"
+      ? "text-[#f8e2af] text-xs font-bold"
+      : "text-[#f8e2af] text-[10px] font-bold tracking-[0.15em] uppercase";
 
   return (
     <>
@@ -126,25 +149,20 @@ export function FooterClient({
                     loading="lazy"
                   />
                 </a>
-                <p className="text-brand-light/80 max-w-[240px] text-sm leading-relaxed font-medium">
+                <p className="text-brand-light/87 max-w-[240px] text-sm leading-relaxed font-medium">
                   {footerT.tagline}
-                </p>
-                <p className="text-brand-normal text-[10px] leading-relaxed font-bold tracking-[0.15em] whitespace-pre-line uppercase">
-                  {footerT.slogan}
                 </p>
               </div>
 
               {/* Column 2 — Navigation */}
               <div className="flex flex-col gap-4 whitespace-nowrap lg:col-span-3">
-                <p className="text-brand-normal text-[10px] font-bold tracking-[0.15em] uppercase">
-                  {footerT.sections.navigation}
-                </p>
+                <p className={eyebrowClass}>{footerT.sections.navigation}</p>
                 <nav className="flex flex-col gap-2.5">
                   {navLinks.map(({ key, href, label }) => (
                     <a
                       key={key}
                       href={href}
-                      className="text-brand-light/75 hover:text-brand-light w-fit text-sm font-medium transition-colors duration-250"
+                      className="text-brand-light/87 hover:text-brand-light w-fit text-sm font-medium transition-colors duration-250"
                     >
                       {label}
                     </a>
@@ -154,22 +172,20 @@ export function FooterClient({
 
               {/* Column 3 — Services */}
               <div className="flex flex-col gap-4 whitespace-nowrap lg:col-span-3">
-                <p className="text-brand-normal text-[10px] font-bold tracking-[0.15em] uppercase">
-                  {footerT.sections.services}
-                </p>
+                <p className={eyebrowClass}>{footerT.sections.services}</p>
                 <nav className="flex flex-col gap-2.5">
                   {services.slice(0, 4).map(({ id, title }) => (
                     <a
                       key={id}
                       href="#services"
-                      className="text-brand-light/75 hover:text-brand-light w-fit text-sm font-medium transition-colors duration-250"
+                      className="text-brand-light/87 hover:text-brand-light w-fit text-sm font-medium transition-colors duration-250"
                     >
                       {title}
                     </a>
                   ))}
                   <a
                     href="#services"
-                    className="text-brand-normal hover:text-brand-light w-fit text-sm font-bold transition-colors duration-250"
+                    className="text-[#f8e2af] hover:text-brand-light w-fit text-sm font-bold transition-colors duration-250"
                   >
                     {footerT.sections.viewAll}
                   </a>
@@ -178,13 +194,9 @@ export function FooterClient({
 
               {/* Column 4 — Contact + WhatsApp + Socials */}
               <div className="flex flex-col gap-4 lg:col-span-3">
-                <p className="text-brand-normal text-[10px] font-bold tracking-[0.15em] uppercase">
-                  {footerT.sections.contact}
-                </p>
+                <p className={eyebrowClass}>{footerT.sections.contact}</p>
                 <div className="flex flex-col gap-1">
-                  <p className="text-brand-normal text-[10px] font-bold tracking-[0.15em] uppercase">
-                    {footerT.contact.whatsappLabel}
-                  </p>
+                  <p className={eyebrowClass}>{footerT.contact.whatsappLabel}</p>
                   <a
                     href={`https://wa.me/${whatsappDigits}`}
                     target="_blank"
@@ -194,7 +206,7 @@ export function FooterClient({
                   >
                     {footerT.contact.whatsapp}
                   </a>
-                  <p className="text-brand-light/60 text-xs font-medium">
+                  <p className="text-brand-light/87 text-xs font-medium">
                     {footerT.contact.whatsappNote}
                   </p>
                 </div>
@@ -219,7 +231,7 @@ export function FooterClient({
                     </svg>
                     {footerT.contact.email}
                   </a>
-                  <p className="text-brand-light/75 flex items-center gap-2.5 text-sm font-medium">
+                  <p className="text-brand-light/87 flex items-center gap-2.5 text-sm font-medium">
                     <svg
                       className="text-brand-normal h-4 w-4 shrink-0"
                       fill="none"
@@ -281,7 +293,7 @@ export function FooterClient({
               gap: "8px",
             }}
           >
-            <p className="text-brand-light/60 text-xs font-medium">
+            <p className="text-brand-light/70 text-xs font-medium">
               {footerT.copyright}
             </p>
             <button
@@ -296,7 +308,8 @@ export function FooterClient({
 
       <PrivacyModal
         isOpen={isPrivacyOpen}
-        onClose={() => setIsPrivacyOpen(false)}
+        onClose={closePrivacyModal}
+        content={privacyPolicyContent}
       />
     </>
   );

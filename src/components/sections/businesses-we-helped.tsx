@@ -2,24 +2,24 @@ import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { type StaticImageData } from "next/image";
 
-import primeShieldImg from "@/assets/imgs/prime.jpg";
-import civiliaImg from "@/assets/imgs/civilia.jpg";
-import kokhImg from "@/assets/imgs/kokh.jpg";
-import rowadImg from "@/assets/imgs/ROWAD.jpg";
-import abotarikImg from "@/assets/imgs/abo tarek.jpg";
-import adriImg from "@/assets/imgs/ADRI_.jpg";
-import addmixImg from "@/assets/imgs/ADDMIX.jpg";
-import ihomeImg from "@/assets/imgs/ihome.jpg";
-import khedeweyImg from "@/assets/imgs/khedewey.jpg";
-import proconceptImg from "@/assets/imgs/PR CONCEPT.jpg";
-import sounImg from "@/assets/imgs/SOUN.jpg";
-import eeisImg from "@/assets/imgs/eeis.jpg";
-import kasrImg from "@/assets/imgs/kasr.png";
-import sabrosoImg from "@/assets/imgs/sabroso.jpg";
-import zamalekImg from "@/assets/imgs/zamalek1.png";
-import nicheImg from "@/assets/imgs/niche.jpg";
-import fitrahImg from "@/assets/imgs/fitrah.png";
-import asswehlyImg from "@/assets/imgs/asswehly1.png";
+import primeShieldImg from "@/assets/imgs/prime.webp";
+import civiliaImg from "@/assets/imgs/civilia.webp";
+import kokhImg from "@/assets/imgs/kokh.webp";
+import rowadImg from "@/assets/imgs/rOWAD.webp";
+import abotarikImg from "@/assets/imgs/abo tarek.webp";
+import adriImg from "@/assets/imgs/aDRI_.webp";
+import addmixImg from "@/assets/imgs/aDDMIX.webp";
+import ihomeImg from "@/assets/imgs/ihome.webp";
+import khedeweyImg from "@/assets/imgs/khedewey.webp";
+import proconceptImg from "@/assets/imgs/pR CONCEPT.webp";
+import sounImg from "@/assets/imgs/sOUN.webp";
+import eeisImg from "@/assets/imgs/eeis.webp";
+import kasrImg from "@/assets/imgs/kasr.webp";
+import sabrosoImg from "@/assets/imgs/sabroso.webp";
+import zamalekImg from "@/assets/imgs/zamalek1.webp";
+import nicheImg from "@/assets/imgs/niche.webp";
+import fitrahImg from "@/assets/imgs/fitrah.webp";
+import asswehlyImg from "@/assets/imgs/asswehly1.webp";
 
 
 // Map image keys to imports — keys must match messages/en.json "img" values

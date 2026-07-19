@@ -28,9 +28,10 @@ export async function generateMetadata({
 
   // hreflang alternates for the bilingual routes. Confirmed against actual
   // middleware behavior: localePrefix defaults to "always" (not overridden
-  // in routing.ts), so the default locale lives at /en, not bare / — "/"
-  // 307-redirects to /en. x-default points at routing.defaultLocale for
-  // the same reason.
+  // in routing.ts), so the default locale lives at /ar, not bare / — "/"
+  // 307-redirects to /ar (deterministically — routing.ts disables
+  // localeDetection so this never varies by Accept-Language). x-default
+  // points at routing.defaultLocale for the same reason.
   return {
     metadataBase: new URL(SITE_URL),
     title,

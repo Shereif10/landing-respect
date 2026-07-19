@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { gsap } from "@/lib/gsap";
 
@@ -42,6 +42,10 @@ export function TrustedByClient({
   // hydration mismatch and no extra render cycle.
   const [row1Logos, row2Logos, row3Logos] = distributeRoundRobin(logos, 3);
 
+  // Layout effect only for the ScrollTrigger-gated fade-in: it must set the
+  // hidden (opacity: 0) starting state before the browser paints, same
+  // reasoning as Hero's entrance timeline — otherwise a fast scroll could
+  // show one frame of the tracks at full opacity before GSAP hides them.
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from([track1Ref.current, track2Ref.current, track3Ref.current], {
@@ -55,7 +59,22 @@ export function TrustedByClient({
           toggleActions: "play none none none",
         },
       });
+    }, sectionRef);
 
+    return () => ctx.revert();
+  }, [logos]);
+
+  // Marquee loop has no hidden/visible state to protect — the tracks' plain
+  // flex layout is already a valid single frame of the same animation before
+  // it starts moving — so this can safely run in a normal (post-paint)
+  // effect instead of useLayoutEffect. That moves its forced-synchronous
+  // `scrollWidth` reads (×3, needed for the loop-distance math) out of the
+  // pre-paint blocking phase, where they'd otherwise stack up against every
+  // other section's own mount-time GSAP/ScrollTrigger setup running in the
+  // same commit — this is the actual "second section" the Hero hands off
+  // to, so its mount-time cost is what a first scroll would run into.
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       const isRTL = getComputedStyle(sectionRef.current!).direction === "rtl";
       let marquee1: gsap.core.Tween | undefined;
       let marquee2: gsap.core.Tween | undefined;

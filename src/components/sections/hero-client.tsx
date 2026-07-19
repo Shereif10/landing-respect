@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useLayoutEffect, useRef } from "react";
+import { useEffect, useId, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { Button } from "@/components/ui/button";
@@ -97,6 +97,46 @@ export function HeroClient({
     return () => ctx.revert();
   }, []);
 
+  // Video playback is JS-driven (not the `autoPlay` attribute) so its heavy
+  // network fetch doesn't compete with critical-path CSS/fonts/JS during
+  // the initial load — measured under real mobile network throttling,
+  // giving the video `autoPlay` made LCP dramatically worse (23.9s, whole
+  // Performance category failed to compute) because the browser prioritized
+  // streaming the 53MB source alongside everything else. That's safe now
+  // because the `poster` attribute below (a 1.4KB solid-color image,
+  // matching the SVG's own green fallback) is what Lighthouse/Chrome
+  // measure LCP against for a `<video>` — decoupling LCP from this effect
+  // entirely, regardless of when real playback actually starts.
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const video = videoRef.current;
+    const visual = visualRef.current;
+
+    // Static green R fallback (rendered under the video in the SVG, and
+    // matched by the poster above) already reads as the finished state —
+    // reduced-motion visitors get that instead of a looping video, per
+    // CLAUDE.md's Animation Rules, and skip the decode cost entirely.
+    if (!video || !visual || prefersReducedMotion) return;
+
+    video.play().catch(() => {});
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+    observer.observe(visual);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="hero"
@@ -115,7 +155,7 @@ export function HeroClient({
         <div className="bg-brand-main/[0.015] absolute end-[10%] top-0 h-[760px] w-[760px] rounded-full blur-[160px]" />
       </div>
 
-      <div className="relative flex flex-col items-center gap-16 lg:flex-row lg:items-center lg:gap-16">
+      <div className="relative flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-16">
         <div className="order-2 flex w-full flex-col items-start gap-8 lg:order-1 lg:w-2/5">
           <h1
             ref={headlineRef}
@@ -188,7 +228,7 @@ export function HeroClient({
         <div className="order-1 w-full lg:order-2 lg:w-3/5">
           <div
             ref={visualRef}
-            className="relative mx-auto aspect-square w-full max-w-[560px] lg:max-w-none"
+            className="relative me-auto aspect-square w-full max-w-[560px] lg:max-w-none"
           >
             <svg
               viewBox={R_VIEWBOX}
@@ -214,9 +254,9 @@ export function HeroClient({
                 clipPath={`url(#${clipId})`}
               >
                 <video
-                  src="/videos/video5.mp4"
+                  src="/videos/video5-optimized.mp4"
+                  poster="/videos/hero-poster.png"
                   ref={videoRef}
-                  autoPlay
                   muted
                   loop
                   playsInline
